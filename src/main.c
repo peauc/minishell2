@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:48:43 2016 Poc
-** Last update Tue Mar 29 20:37:20 2016 Poc
+** Last update Wed Mar 30 17:55:46 2016 Poc
 */
 
 #include <unistd.h>
@@ -19,7 +19,7 @@ int	main(int ac, char **av, char **ae)
     return (write(2, "No environement detected\n", 25) - 24);
   if ((env = copy_env(ae)) == NULL)
     return (1);
-  if ((minishell(ac, av, env)))
+  if ((minishell(env)))
     return (1);
   return (0);
 }

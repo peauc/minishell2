@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Tue Mar 29 19:04:07 2016 Poc
+## Last update Wed Mar 30 18:52:10 2016 Poc
 ##
 
 DEBUG=	yes
@@ -14,10 +14,13 @@ SRC=	arlen.c			\
 	copy_env.c		\
 	epur.c			\
 	main.c 			\
+	linked_list.c		\
 	minishell.c		\
 	my_strcpy.c		\
 	my_strlen.c		\
 	my_strdup.c		\
+	parsing.c		\
+	read.c			\
 	showtab.c		\
 	wordtab.c		\
 
