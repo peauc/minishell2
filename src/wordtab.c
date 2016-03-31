@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 18:37:30 2016 Poc
-** Last update Thu Mar 31 00:50:19 2016 Poc
+** Last update Thu Mar 31 14:35:29 2016 Poc
 */
 
 #include <unistd.h>
@@ -83,5 +83,6 @@ char	**str_wordtab(char *str, char target)
       i++;
     }
   tab[j] = NULL;
+  free(str);
   return (tab);
 }

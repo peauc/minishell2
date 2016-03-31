@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 19:01:07 2016 Poc
-** Last update Thu Mar 31 14:10:00 2016 Poc
+** Last update Thu Mar 31 14:54:46 2016 Poc
 */
 
 #include <stdlib.h>
@@ -29,6 +29,7 @@ int	cut_by_semicolon(t_args *arguments, char *line)
 	return (1);
       i++;
     }
+  free(tab);
   showlist(arguments);
   return (0);
 }

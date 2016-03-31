@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 18:23:01 2016 Poc
-** Last update Wed Mar 30 19:25:35 2016 Poc
+** Last update Thu Mar 31 18:44:57 2016 Poc
 */
 
 #include <unistd.h>
@@ -26,6 +26,9 @@ int		minishell(char **ae)
 	  return (1);
 	}
       args = parsing(read);
+
+      free_args(args);
     }
+
   return (0);
 }

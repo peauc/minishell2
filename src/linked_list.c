@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 18:48:26 2016 Poc
-** Last update Thu Mar 31 14:14:43 2016 Poc
+** Last update Thu Mar 31 14:28:58 2016 Poc
 */
 
 #include <stdlib.h>
@@ -48,16 +48,5 @@ void		showlist(t_args *args)
     {
       showtab(args->args);
       args = args->next;
-    }
-}
-
-void		free_args(t_args *args)
-{
-  t_args	*tmp;
-
-  while (args)
-    {
-      tmp = args;
-
     }
 }
