@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Jan  5 14:33:32 2016
-** Last update Tue Mar 29 18:56:29 2016 Poc
+** Last update Wed Mar 30 19:12:50 2016 Poc
 */
 
 #include <stdlib.h>
@@ -24,7 +24,8 @@ char	*epur_str(char *str)
     return (NULL);
   if ((new_str = malloc(sizeof(char) * (my_strlen(str) + 1))) == NULL)
     return (NULL);
-  while ((str[i] == 32 || str[i] == '\t') && str[i++] != 0);
+  while (str[i] != 0 && (str[i] == 32 || str[i] == '\t'))
+    i++;
   while (str[i])
     {
       if (str[i] == '\t')

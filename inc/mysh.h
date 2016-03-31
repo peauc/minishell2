@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Wed Mar 30 18:54:17 2016 Poc
+** Last update Thu Mar 31 14:03:47 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -15,14 +15,20 @@
 typedef struct	s_args
 {
   char		**args;
-  struct t_args	*next;
+  struct s_args	*next;
 }		t_args;
+
+/*
+** PARSING
+*/
+int		cut_by_semicolon(t_args *, char *);
 
 /*
 ** MINISHELL
 */
 int		minishell(char **);
 t_args		*parsing(char *);
+void		free_all(char **, char *);
 
 /*
 ** LIB
@@ -40,6 +46,10 @@ void		showtab(char **);
 /*
 ** LINKED LIST
 */
-t_args	*create_argument_list();
+int		cut_by_semicolon(t_args *, char *);
+t_args		*add_to_back(t_args *, char **);
+t_args		*create_argument_list();
+void		showlist(t_args *);
+
 
 #endif	/* !_MYSH_ */

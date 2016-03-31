@@ -5,16 +5,18 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Wed Mar 30 18:52:10 2016 Poc
+## Last update Wed Mar 30 19:27:07 2016 Poc
 ##
 
 DEBUG=	yes
 
 SRC=	arlen.c			\
 	copy_env.c		\
+	cut_line.c		\
 	epur.c			\
-	main.c 			\
+	free_all.c		\
 	linked_list.c		\
+	main.c 			\
 	minishell.c		\
 	my_strcpy.c		\
 	my_strlen.c		\

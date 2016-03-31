@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 18:48:26 2016 Poc
-** Last update Wed Mar 30 18:52:29 2016 Poc
+** Last update Thu Mar 31 14:14:43 2016 Poc
 */
 
 #include <stdlib.h>
@@ -20,4 +20,44 @@ t_args	*create_argument_list()
   args->next = NULL;
   args->args = NULL;
   return (args);
+}
+
+t_args		*add_to_back(t_args *args, char **line)
+{
+  t_args	*tmp;
+
+  if (args->args == NULL)
+    {
+      args->args = line;
+      return (args);
+    }
+  while (args->next != NULL)
+    args = args->next;
+  if ((tmp = malloc(sizeof(t_args))) == NULL)
+    return (NULL);
+  tmp->next = NULL;
+  tmp->args = line;
+  args->next = tmp;
+  return (tmp);
+}
+
+void		showlist(t_args *args)
+{
+  printf("showlist\n");
+  while (args)
+    {
+      showtab(args->args);
+      args = args->next;
+    }
+}
+
+void		free_args(t_args *args)
+{
+  t_args	*tmp;
+
+  while (args)
+    {
+      tmp = args;
+
+    }
 }

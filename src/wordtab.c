@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 18:37:30 2016 Poc
-** Last update Tue Mar 29 20:37:06 2016 Poc
+** Last update Thu Mar 31 00:50:19 2016 Poc
 */
 
 #include <unistd.h>
@@ -42,7 +42,7 @@ int	get_lenght(char *str, int target)
   return (i);
 }
 
-void	my_strcpy_to_target(char *dest, char *src, char target)
+int	my_strcpy_to_target(char *dest, char *src, char target)
 {
   int	i;
 
@@ -55,6 +55,7 @@ void	my_strcpy_to_target(char *dest, char *src, char target)
       i++;
     }
   dest[i] = 0;
+  return (0);
 }
 
 char	**str_wordtab(char *str, char target)
@@ -63,22 +64,24 @@ char	**str_wordtab(char *str, char target)
   int	j;
   char	**tab;
 
+  i = 0;
+  j = 0;
   if ((str = epur_str(str)) == NULL ||
       (tab = malloc(sizeof(char *) * (count_word(str, target) + 1))) == NULL)
     return (NULL);
-  i = 0;
-  j = 0;
   while (str[i])
     {
       if (str[i] == target || i == 0)
 	{
 	  if ((tab[j] = malloc(sizeof(char) *
-			       (get_lenght(str + i, 32) + 1))) == NULL)
+			       (get_lenght(str + i, target) + 1))) == NULL)
 	    return (NULL);
-	  my_strcpy_to_target(tab[j], str + i, 32);
+	  if (my_strcpy_to_target(tab[j], str + i, target))
+	    return(NULL);
 	  j++;
 	}
       i++;
     }
+  tab[j] = NULL;
   return (tab);
 }
