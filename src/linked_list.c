@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 18:48:26 2016 Poc
-** Last update Thu Mar 31 14:28:58 2016 Poc
+** Last update Sat Apr  2 16:07:50 2016 Poc
 */
 
 #include <stdlib.h>
@@ -22,7 +22,7 @@ t_args	*create_argument_list()
   return (args);
 }
 
-t_args		*add_to_back(t_args *args, char **line)
+t_args		*add_to_back(t_args *args, char *line)
 {
   t_args	*tmp;
 
@@ -46,7 +46,7 @@ void		showlist(t_args *args)
   printf("showlist\n");
   while (args)
     {
-      showtab(args->args);
+      printf("%s\n", args->args);
       args = args->next;
     }
 }

@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Jan  7 16:29:47 2016
-** Last update Thu Mar 31 01:07:20 2016 Poc
+** Last update Sat Apr  2 18:03:24 2016 Poc
 */
 
 #include <unistd.h>
@@ -19,7 +19,7 @@ char		*read_it()
   char		*line;
 
   if ((line = malloc(4096 * sizeof(char))) == NULL)
-    exit(-1);
+    return (NULL);
   if (((readed = read(0, line, 4096)) <= 0))
     {
       free(line);
@@ -35,7 +35,5 @@ char		*read_it()
       if (line[i] == '\t')
 	line[i] = ' ';
     }
-  if (line[0] == 0)
-    return (NULL);
   return (line);
 }

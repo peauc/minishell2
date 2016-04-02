@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 19:01:07 2016 Poc
-** Last update Thu Mar 31 14:54:46 2016 Poc
+** Last update Sat Apr  2 15:53:24 2016 Poc
 */
 
 #include <stdlib.h>
@@ -14,7 +14,6 @@
 int	cut_by_semicolon(t_args *arguments, char *line)
 {
   char	**tab;
-  char	**tmp;
   int	i;
 
   i = 0;
@@ -23,13 +22,10 @@ int	cut_by_semicolon(t_args *arguments, char *line)
     {
       if ((tab[i] = epur_str(tab[i])) == NULL)
 	return (1);
-      if ((tmp = str_wordtab(tab[i], ' ')) == NULL)
-	return (1);
-      if ((!add_to_back(arguments, tmp)))
+      if ((!add_to_back(arguments, tab[i])))
 	return (1);
       i++;
     }
   free(tab);
-  showlist(arguments);
   return (0);
 }

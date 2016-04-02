@@ -1,11 +1,11 @@
 /*
-** main.c for ;ain in /home/peau_c/rendu/PSU/minishell/PSU_2015_my_exec
+** epur.c for sh in /home/peau_c/rendu/PSU/PSU_2015_minishell2
 **
-** Made by
+** Made by Poc
 ** Login   <peau_c@epitech.net>
 **
-** Started on  Tue Jan  5 14:33:32 2016
-** Last update Wed Mar 30 19:12:50 2016 Poc
+** Started on  Sat Apr  2 16:25:58 2016 Poc
+** Last update Sat Apr  2 16:39:43 2016 Poc
 */
 
 #include <stdlib.h>
@@ -22,10 +22,9 @@ char	*epur_str(char *str)
   i = 0;
   if (str == NULL)
     return (NULL);
-  if ((new_str = malloc(sizeof(char) * (my_strlen(str) + 1))) == NULL)
+  if ((new_str = malloc(sizeof(char) * my_strlen(str) + 1)) == NULL)
     return (NULL);
-  while (str[i] != 0 && (str[i] == 32 || str[i] == '\t'))
-    i++;
+  while ((str[i] == 32 || str[i] == '\t') && str[i++] != 0);
   while (str[i])
     {
       if (str[i] == '\t')
@@ -34,7 +33,23 @@ char	*epur_str(char *str)
 	i++;
       new_str[k++] = str[i++];
     }
+  if (new_str[k - 1] == 32)
+    new_str[k - 1] = 0;
   new_str[k] = 0;
   free(str);
   return (new_str);
+}
+
+char	**epur_tab(char **tab)
+{
+  int	i;
+
+  i = 0;
+  while (tab[i])
+    {
+      if ((tab[i] = epur_str(tab[i])) == NULL)
+	return (NULL);
+      i++;
+    }
+  return (tab);
 }
