@@ -5,9 +5,10 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 18:23:01 2016 Poc
-** Last update Sat Apr  2 18:04:24 2016 Poc
+** Last update Sat Apr  2 18:25:22 2016 Poc
 */
 
+#include <stdlib.h>
 #include <unistd.h>
 #include "mysh.h"
 
@@ -29,6 +30,7 @@ int		minishell(char **ae)
 	{
 	  args = parsing(read);
 	  get_pipes(args);
+	  core(args, ae);
 	  free_tab(args->pipes.command);
 	  free_args(args);
 	}

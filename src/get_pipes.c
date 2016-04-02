@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Mar 31 18:48:02 2016 Poc
-** Last update Sat Apr  2 17:47:32 2016 Poc
+** Last update Sat Apr  2 18:08:04 2016 Poc
 */
 
 #include <stdio.h>
@@ -29,6 +29,7 @@ static int	add_to_struct(t_args *args)
   args->pipes.command = tab;
   showtab(args->pipes.command);
   args->args = str;
+  return (0);
 }
 
 int		get_pipes(t_args *args)

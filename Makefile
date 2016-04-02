@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Thu Mar 31 19:04:21 2016 Poc
+## Last update Sat Apr  2 18:49:07 2016 Poc
 ##
 
 DEBUG=	yes
@@ -14,6 +14,7 @@ SRC=	arlen.c			\
 	copy_env.c		\
 	count_in_wordtab.c	\
 	cut_line.c		\
+	core.c			\
 	epur.c			\
 	free_all.c		\
 	get_pipes.c		\
