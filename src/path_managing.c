@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Sat Apr  2 20:12:25 2016 Poc
-** Last update Sat Apr  2 20:47:47 2016 Poc
+** Last update Sat Apr  2 21:38:40 2016 Poc
 */
 
 #include <stdlib.h>
@@ -17,20 +17,16 @@ char	**get_path(char **ae)
   char	*tmp;
   int	i;
 
-  i = 0;
+  i = -1;
   path = NULL;
-  while (ae[i])
-    {
+  while (ae[++i])
       if (my_strncmp(ae[i], "PATH=", 5) == 0)
 	{
-	  if ((tmp = my_strdup(ae[i] + 5)) == NULL)
-	    return (NULL);
-	  if ((path = (str_wordtab(tmp, ':'))) == NULL)
+	  if ((tmp = my_strdup(ae[i] + 5)) == NULL ||
+	      (path = (str_wordtab(tmp, ':'))) == NULL)
 	    return (NULL);
 	  break ;
 	}
-      i++;
-    }
   if (path != NULL)
     showtab(path);
   return (path);

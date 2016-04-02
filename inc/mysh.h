@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Sat Apr  2 18:09:56 2016 Poc
+** Last update Sat Apr  2 21:46:05 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -26,7 +26,9 @@ typedef struct	s_args
 /*
 ** PARSING
 */
+char		**get_path(char **);
 int		cut_by_semicolon(t_args *, char *);
+int		core(t_args *, char **);
 int		count_pipes(char *);
 int		get_pipes(t_args *);
 
@@ -35,6 +37,7 @@ int		get_pipes(t_args *);
 */
 int		minishell(char **);
 t_args		*parsing(char *);
+char		*read_it();
 void		free_all(char **, char *);
 
 /*
@@ -45,9 +48,9 @@ char		**copy_env(char **);
 char		**str_wordtab(char *, char);
 char		*my_strdup(char *);
 char		*epur_str(char *);
-char		*read_it();
 int		arlen(char **);
 int		my_strlen(char *);
+int		my_strncmp(char *, char *, int);
 void		my_strcpy(char *, char *);
 void		showtab(char **);
 void		free_args(t_args *);
