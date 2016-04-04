@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Mon Apr  4 18:05:34 2016 Poc
+## Last update Tue Apr  5 00:54:38 2016 Poc
 ##
 
 DEBUG=	yes
@@ -31,6 +31,7 @@ SRC=	arlen.c			\
 	path_managing.c		\
 	read.c			\
 	showtab.c		\
+	werror.c		\
 	wordtab.c		\
 
 OBJ=	$(addprefix src/, $(SRC:.c=.o))
