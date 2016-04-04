@@ -5,12 +5,13 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Sat Apr  2 20:40:27 2016 Poc
+## Last update Mon Apr  4 18:05:34 2016 Poc
 ##
 
 DEBUG=	yes
 
 SRC=	arlen.c			\
+	calc.c			\
 	copy_env.c		\
 	count_in_wordtab.c	\
 	cut_line.c		\
@@ -21,6 +22,7 @@ SRC=	arlen.c			\
 	linked_list.c		\
 	main.c 			\
 	minishell.c		\
+	my_strcat.c		\
 	my_strcpy.c		\
 	my_strncmp.c		\
 	my_strlen.c		\
@@ -48,8 +50,17 @@ NAME=	mysh
 HEAD=	-I inc/
 
 $(NAME):                $(OBJ)
-			@ $(CC) $(OBJ) -o $(NAME)
-			@ echo -e "\033[1;31m \t \t \n \t ♩♪♫ $(NAME) Compiled\033[0;31m®\033[1;31m Created Sucesfully \033[0m"
+ifeq ($(DEBUG), yes)
+	@tput setaf 1; tput bold
+	@echo "____________________ ________________________   ____ ___._________________";
+	@echo "/   _____/\_   _____|/  _____/\_   _____/  _  \ |    |   \    | \__    ___/";
+	@echo "\_____  \  |    ___|/   \  ___ |    __)/  /_\  \|    |   /    |   |    |";
+	@echo "/        \ |        \    \_\  \|     \/    |    \    |  /|    |___|    |";
+	@echo "/________//_________/\________/\_____/\____|____/______/ |_______ \____|";
+	@tput sgr0
+endif
+	@ $(CC) $(OBJ) -o $(NAME)
+	@ echo -e "\033[1;31m \t \t \n \t ♩♪♫ $(NAME) Compiled\033[0;31m®\033[1;31m Created Sucesfully \033[0m"
 
 all:		$(NAME)
 
