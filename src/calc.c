@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr  5 01:29:09 2016 Poc
+** Last update Tue Apr  5 01:49:04 2016 Poc
 */
 
 #include <unistd.h>
@@ -52,11 +52,12 @@ char		**prepare_it(char *command, char **path)
       (new_command = str_wordtab(tmp, ' ')) == NULL)
     return (NULL);
   showtab(new_command);
-  if ((another_tmp = test_access(command, path)) != NULL)
+  if ((another_tmp = test_access(new_command[0], path)) != NULL)
     {
       new_command[0] = another_tmp;
       return (new_command);
     }
+  free_tab(new_command);
   return (NULL);
 }
 
@@ -64,21 +65,29 @@ int		 fork_it(int fdp[2], char **pipes, int i, char **path)
 {
   int		chpid;
   char		**get_access;
+  char		buffer[4096];
 
   printf("-----NEWPIPE-----\n");
   if (!(get_access = prepare_it(pipes[i], path)))
     return (werror(pipes[i]), werror(" : Command not found\n"), 0);
-  printf("la pipe est -> %s\n", pipes[i]);
+  printf("Command -> %s\n", get_access[0]);
+  showtab(get_access + 1);
   /* chpid = fork(); */
   /* if (chpid == 0) */
   /*   { */
   /*     if ((dup2(0, fdp[1])) == -1 || */
   /* 	  dup2(1, fdp[0] == -1)) */
   /* 	return (1); */
-  /*     execve() */
+  /*     execve(get_access[0], get_access, NULL); */
   /*   } */
   /* else */
-  /*   wait(chpid) */
+  /*   { */
+  /*     sleep(1); */
+  /*     if (pipes[i + 1] == NULL) */
+  /* 	read(fdp[1], buffer, 4095); */
+  /*     write(1, buffer, my_strlen(buffer)); */
+  /*   } */
+  free_tab(get_access);
   return (0);
 }
 
