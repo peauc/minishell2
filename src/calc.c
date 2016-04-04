@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr  5 01:16:13 2016 Poc
+** Last update Tue Apr  5 01:29:09 2016 Poc
 */
 
 #include <unistd.h>
@@ -40,18 +40,33 @@ char		*test_access(char *command, char **path)
   return (NULL);
 }
 
-int		prepare_it(char *command, char **path)
+char		**prepare_it(char *command, char **path)
 {
+  char		**new_command;
+  char		*tmp;
+  char		*another_tmp;
+  int		i;
 
+  i = 0;
+  if ((tmp = my_strdup(command)) == NULL ||
+      (new_command = str_wordtab(tmp, ' ')) == NULL)
+    return (NULL);
+  showtab(new_command);
+  if ((another_tmp = test_access(command, path)) != NULL)
+    {
+      new_command[0] = another_tmp;
+      return (new_command);
+    }
+  return (NULL);
 }
 
 int		 fork_it(int fdp[2], char **pipes, int i, char **path)
 {
   int		chpid;
-  char		*get_access;
+  char		**get_access;
 
   printf("-----NEWPIPE-----\n");
-  if (get_access = prepare_it(pipes[i], path) == NULL)
+  if (!(get_access = prepare_it(pipes[i], path)))
     return (werror(pipes[i]), werror(" : Command not found\n"), 0);
   printf("la pipe est -> %s\n", pipes[i]);
   /* chpid = fork(); */
