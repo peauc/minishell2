@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr  5 01:49:04 2016 Poc
+** Last update Tue Apr  5 01:53:41 2016 Poc
 */
 
 #include <unistd.h>
@@ -31,7 +31,6 @@ char		*test_access(char *command, char **path)
 	{
 	  ret = my_strdup(new_path[i]);
 	  free_tab(new_path);
-	  printf("%s\n", ret);
 	  return (ret);
 	}
       i++;
@@ -63,15 +62,15 @@ char		**prepare_it(char *command, char **path)
 
 int		 fork_it(int fdp[2], char **pipes, int i, char **path)
 {
-  int		chpid;
   char		**get_access;
-  char		buffer[4096];
 
   printf("-----NEWPIPE-----\n");
   if (!(get_access = prepare_it(pipes[i], path)))
     return (werror(pipes[i]), werror(" : Command not found\n"), 0);
   printf("Command -> %s\n", get_access[0]);
   showtab(get_access + 1);
+  /* char		buffer[4096]; */
+  /* int		chpid; */
   /* chpid = fork(); */
   /* if (chpid == 0) */
   /*   { */
@@ -84,8 +83,10 @@ int		 fork_it(int fdp[2], char **pipes, int i, char **path)
   /*   { */
   /*     sleep(1); */
   /*     if (pipes[i + 1] == NULL) */
-  /* 	read(fdp[1], buffer, 4095); */
-  /*     write(1, buffer, my_strlen(buffer)); */
+  /* 	{ */
+  /* 	  read(fdp[0], buffer, 4095); */
+  /* 	  write(1, buffer, my_strlen(buffer)); */
+  /* 	} */
   /*   } */
   free_tab(get_access);
   return (0);
@@ -103,8 +104,8 @@ int		calc(t_args *args, char **ae)
     return (1);
   i = 0;
   printf("-----NEW_COMMAND-----\n");
-  /* if ((pipe(fdp)) != 0) */
-  /* 	return (1); */
+  if ((pipe(fdp)) != 0)
+  	return (1);
   while (args->pipes.command[i])
     {
       if (fork_it(fdp, args->pipes.command, i, path))
