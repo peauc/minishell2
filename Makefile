@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Tue Apr  5 17:54:09 2016 Poc
+## Last update Tue Apr  5 19:11:31 2016 Poc
 ##
 
 DEBUG=	yes
@@ -17,6 +17,7 @@ SRC=	arlen.c			\
 	cut_line.c		\
 	core.c			\
 	epur.c			\
+	execute_pipes.c		\
 	free_all.c		\
 	get_pipes.c		\
 	linked_list.c		\
@@ -29,6 +30,7 @@ SRC=	arlen.c			\
 	my_strdup.c		\
 	parsing.c		\
 	path_managing.c		\
+	prepare_pipe.c		\
 	read.c			\
 	showtab.c		\
 	werror.c		\

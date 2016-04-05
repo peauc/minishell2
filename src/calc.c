@@ -5,9 +5,10 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr  5 18:29:41 2016 Poc
+** Last update Tue Apr  5 19:17:28 2016 Poc
 */
 
+#include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "mysh.h"
@@ -61,6 +62,20 @@ char		**prepare_it(char *command, char **path)
 
 int		execute_and_pipe(int **fdp, char **pipes, char **ae, int i)
 {
+  if (i == 0)
+    {
+      execute_first(pipes, ae, i, fdp);
+    }
+  else if (pipes[i + 1] == NULL)
+    {
+      execute_last(pipes, ae, i, fdp);
+      printf("first one\n");
+    }
+  else
+    {
+      execute_middle(pipes, ae, i, fdp);
+      printf("middle one\n");
+    }
   return (0);
 }
 
@@ -79,7 +94,8 @@ int		 fork_it(int **fdp, char **pipes, int i, char **path, char **ae)
   chpid = fork();
   if (chpid == 0)
     {
-      execute_and_pipe(fdp, pipes, ae, i);
+      execute_and_pipe(fdp, get_access, ae, i);
+      exit(1);
     }
   else
     {
@@ -89,36 +105,15 @@ int		 fork_it(int **fdp, char **pipes, int i, char **path, char **ae)
   return (0);
 }
 
-int		**make_pipe_tab(t_args *args)
-{
-  int		**fdp;
-  int		i;
-
-  i = 0;
-  if ((fdp = malloc(sizeof(int *) * (count_pipes(args->args) + 1))) == NULL)
-    return (NULL);
-  fdp[count_pipes(args->args)] = NULL;
-  while (fdp[i])
-    {
-      if ((fdp[i] = malloc(sizeof(int) * 2)) == NULL)
-	return (NULL);
-
-      i++;
-    }
-  fdp[i] = NULL;
-  return (fdp);
-}
-
 int		calc(t_args *args, char **ae)
 {
   char		**path;
-  char		**tmp_path;
   int		**fdp;
   int		i;
 
   printf("\n\n\nhello its me\n");
   printf("%d\n", count_pipes(args->args) + 2);
-  if ((path = get_path(ae)) == NULL |
+  if (((path = get_path(ae)) == NULL) |
       ((fdp = make_pipe_tab(args)) == NULL))
     return (1);
   i = arlen(args->pipes.command) - 1;

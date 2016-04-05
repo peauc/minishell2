@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Sat Apr  2 18:26:36 2016 Poc
-** Last update Mon Apr  4 15:01:03 2016 Poc
+** Last update Tue Apr  5 19:17:40 2016 Poc
 */
 
 #include <stdlib.h>
@@ -13,8 +13,6 @@
 
 int	core(t_args *args, char **ae)
 {
-  char	**path;
-
   while (args)
     {
       calc(args, ae);
