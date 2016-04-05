@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 19:05:49 2016 Poc
-** Last update Tue Apr  5 19:44:10 2016 Poc
+** Last update Tue Apr  5 20:15:29 2016 Poc
 */
 
 #include <stdio.h>
@@ -21,7 +21,7 @@ int	execute_first(char **command, char **env, int i, int **fdp)
   if (chid == 0)
     {
       close(fdp[0][0]);
-      dup2(1, fdp[0][1]);
+      dup2(fdp[0][1], 1);
       execve(command[0], command, env);
     }
   /* else */
@@ -44,10 +44,11 @@ int	execute_last(char **command, char **env, int i, int **fdp)
   if (chid == 0)
     {
       close (fdp[i][1]);
-      dup2(0, fdp[i - 1][0]);
+      dup2(fdp[i - 1][0], 0);
+      write(2, "Je suis la\n", 11);
       execve(command[0], command, env);
     }
-  /* else */
-  /*   wait(&status); */
+  else
+    wait(&status);
   return (0);
 }

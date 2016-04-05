@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr  5 19:37:09 2016 Poc
+** Last update Tue Apr  5 20:08:45 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -91,18 +91,10 @@ int		 fork_it(int **fdp, char **pipes, int i, char **path, char **ae)
     return (werror(pipes[i]), werror(" : Command not found\n"), 0);
   printf("Command -> %s\n", get_access[0]);
   showtab(get_access + 1);
-  chpid = fork();
-  if (chpid == 0)
-    {
-      if (fdp[0] == NULL)
-	simple_exec(get_access, ae);
-      else
-	execute_and_pipe(fdp, get_access, ae, i);
-    }
+  if (fdp[0] == NULL)
+    simple_exec(get_access, ae);
   else
-    {
-      wait(&status);
-    }
+    execute_and_pipe(fdp, get_access, ae, i);
   free_tab(get_access);
   return (0);
 }
