@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr  5 19:17:28 2016 Poc
+** Last update Tue Apr  5 19:37:09 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -94,8 +94,10 @@ int		 fork_it(int **fdp, char **pipes, int i, char **path, char **ae)
   chpid = fork();
   if (chpid == 0)
     {
-      execute_and_pipe(fdp, get_access, ae, i);
-      exit(1);
+      if (fdp[0] == NULL)
+	simple_exec(get_access, ae);
+      else
+	execute_and_pipe(fdp, get_access, ae, i);
     }
   else
     {
@@ -112,7 +114,6 @@ int		calc(t_args *args, char **ae)
   int		i;
 
   printf("\n\n\nhello its me\n");
-  printf("%d\n", count_pipes(args->args) + 2);
   if (((path = get_path(ae)) == NULL) |
       ((fdp = make_pipe_tab(args)) == NULL))
     return (1);

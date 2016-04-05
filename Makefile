@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Tue Apr  5 19:11:31 2016 Poc
+## Last update Tue Apr  5 19:31:21 2016 Poc
 ##
 
 DEBUG=	yes
@@ -33,6 +33,7 @@ SRC=	arlen.c			\
 	prepare_pipe.c		\
 	read.c			\
 	showtab.c		\
+	simple_exec.c		\
 	werror.c		\
 	wordtab.c		\
 
