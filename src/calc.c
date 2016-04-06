@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr  5 20:08:45 2016 Poc
+** Last update Wed Apr  6 02:37:06 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -66,15 +66,13 @@ int		execute_and_pipe(int **fdp, char **pipes, char **ae, int i)
     {
       execute_first(pipes, ae, i, fdp);
     }
-  else if (pipes[i + 1] == NULL)
+  else if (fdp[i] == NULL)
     {
       execute_last(pipes, ae, i, fdp);
-      printf("first one\n");
     }
   else
     {
       execute_middle(pipes, ae, i, fdp);
-      printf("middle one\n");
     }
   return (0);
 }
@@ -89,8 +87,6 @@ int		 fork_it(int **fdp, char **pipes, int i, char **path, char **ae)
   printf("-----NEWPIPE-----\n");
   if (!(get_access = prepare_it(pipes[i], path)))
     return (werror(pipes[i]), werror(" : Command not found\n"), 0);
-  printf("Command -> %s\n", get_access[0]);
-  showtab(get_access + 1);
   if (fdp[0] == NULL)
     simple_exec(get_access, ae);
   else
@@ -110,7 +106,6 @@ int		calc(t_args *args, char **ae)
       ((fdp = make_pipe_tab(args)) == NULL))
     return (1);
   i = arlen(args->pipes.command) - 1;
-  printf("i = %d\n", i);
   printf("-----NEW_COMMAND-----\n");
   while (i >= 0)
     {
@@ -118,6 +113,7 @@ int		calc(t_args *args, char **ae)
 	return (1);
       i--;
     }
+  close_fpd(fdp);
   free_tab(path);
   return (0);
 }

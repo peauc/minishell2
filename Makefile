@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Tue Apr  5 19:31:21 2016 Poc
+## Last update Wed Apr  6 01:51:01 2016 Poc
 ##
 
 DEBUG=	yes
@@ -46,7 +46,7 @@ ifeq ($(DEBUG), yes)
 	CC=		clang
 else
 	CFLAGS=		$(HEAD) -W -Wall -Wextra -ansi -pedantic
-	CC=		gcc
+		CC=		gcc
 endif
 
 NAME=	mysh
@@ -79,3 +79,5 @@ re:	fclean all
 %.o:                    %.c
 			@ echo "[ OK ] Compiling" $<
 			@ $(CC) -o $@ -c $< $(CFLAGS)
+test:
+			gcc -o test src/execute_pipes.c test.c -I./inc
