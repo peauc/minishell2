@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Wed Apr  6 01:51:01 2016 Poc
+## Last update Wed Apr  6 14:27:50 2016 Poc
 ##
 
 DEBUG=	yes
@@ -46,7 +46,7 @@ ifeq ($(DEBUG), yes)
 	CC=		clang
 else
 	CFLAGS=		$(HEAD) -W -Wall -Wextra -ansi -pedantic
-		CC=		gcc
+	CC=		gcc
 endif
 
 NAME=	mysh
@@ -62,6 +62,7 @@ ifeq ($(DEBUG), yes)
 	@echo "/        \ |        \    \_\  \|     \/    |    \    |  /|    |___|    |";
 	@echo "/________//_________/\________/\_____/\____|____/______/ |________|____|";
 	@tput sgr0
+	find . -type f -iname "*.[chS]" | xargs etags -a
 endif
 	@ $(CC) $(OBJ) -o $(NAME)
 	@ echo -e "\033[1;31m \t \t \n \t ♩♪♫ $(NAME) Compiled\033[0;31m®\033[1;31m Created Sucesfully \033[0m"

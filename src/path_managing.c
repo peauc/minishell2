@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Sat Apr  2 20:12:25 2016 Poc
-** Last update Tue Apr  5 00:16:05 2016 Poc
+** Last update Wed Apr  6 14:30:50 2016 Poc
 */
 
 #include <stdlib.h>
@@ -36,7 +36,7 @@ char	**concatenate_path(char *command, char **path)
 char	**get_path(char **ae)
 {
   char	**path;
-  char	*tmp;
+  char	*;
   int	i;
 
   i = -1;

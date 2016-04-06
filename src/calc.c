@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Wed Apr  6 02:50:08 2016 Poc
+** Last update Wed Apr  6 13:42:56 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -109,13 +109,13 @@ int		calc(t_args *args, char **ae)
   if (((path = get_path(ae)) == NULL) |
       ((fdp = make_pipe_tab(args)) == NULL))
     return (1);
-  i = arlen(args->pipes.command) - 1;
+  i = 0;
   printf("-----NEW_COMMAND-----\n");
-  while (i >= 0)
+  while (i < arlen(args->pipes.command))
     {
       if (fork_it(fdp, args->pipes.command, i, path, ae))
 	return (1);
-      i--;
+      i++;
     }
   close_fpd(fdp);
   free_tab(path);
