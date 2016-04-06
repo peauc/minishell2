@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Tue Apr  5 19:16:44 2016 Poc
+** Last update Wed Apr  6 02:52:10 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -37,7 +37,7 @@ int		execute_first(char **, char **, int, int **);
 int		execute_middle(char **, char **, int, int **);
 int		execute_last(char **, char **, int, int **);
 int		get_pipes(t_args *);
-
+int		simple_exec(char **, char **);
 
 /*
 ** MINISHELL

@@ -5,8 +5,12 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 19:30:28 2016 Poc
-** Last update Tue Apr  5 19:37:31 2016 Poc
+** Last update Wed Apr  6 02:51:26 2016 Poc
 */
+
+#include <sys/wait.h>
+#include <unistd.h>
+#include "mysh.h"
 
 int	simple_exec(char **pipe, char **ae)
 {
@@ -15,10 +19,12 @@ int	simple_exec(char **pipe, char **ae)
 
   printf("----SIMPLE EXEC ----\n");
   showtab(pipe);
-  chid = fork();
+  if ((chid = fork()) == -1)
+    return (1);
   if (chid == 0)
     {
-      execve(pipe[0], pipe, ae);
+      if (execve(pipe[0], pipe, ae) == -1)
+	return (1);
     }
   else
     wait(&status);

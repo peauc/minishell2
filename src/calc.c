@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Wed Apr  6 02:37:06 2016 Poc
+** Last update Wed Apr  6 02:50:08 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -64,15 +64,18 @@ int		execute_and_pipe(int **fdp, char **pipes, char **ae, int i)
 {
   if (i == 0)
     {
-      execute_first(pipes, ae, i, fdp);
+      if (execute_first(pipes, ae, i, fdp))
+	return (1);
     }
   else if (fdp[i] == NULL)
     {
-      execute_last(pipes, ae, i, fdp);
+      if (execute_last(pipes, ae, i, fdp))
+	return (1);
     }
   else
     {
-      execute_middle(pipes, ae, i, fdp);
+      if (execute_middle(pipes, ae, i, fdp))
+	return (1);
     }
   return (0);
 }
@@ -80,17 +83,18 @@ int		execute_and_pipe(int **fdp, char **pipes, char **ae, int i)
 int		 fork_it(int **fdp, char **pipes, int i, char **path, char **ae)
 {
   char		**get_access;
-  int		chpid;
-  int		status;
 
-  status = 0;
   printf("-----NEWPIPE-----\n");
   if (!(get_access = prepare_it(pipes[i], path)))
     return (werror(pipes[i]), werror(" : Command not found\n"), 0);
   if (fdp[0] == NULL)
-    simple_exec(get_access, ae);
+    {
+      if (simple_exec(get_access, ae))
+	return (1);
+    }
   else
-    execute_and_pipe(fdp, get_access, ae, i);
+    if (execute_and_pipe(fdp, get_access, ae, i))
+      return (1);
   free_tab(get_access);
   return (0);
 }
