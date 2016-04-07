@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Apr  7 10:23:09 2016 Poc
-** Last update Thu Apr  7 11:10:59 2016 Poc
+** Last update Thu Apr  7 15:19:54 2016 Poc
 */
 
 #include <stdlib.h>
@@ -28,34 +28,55 @@ static char	**make_dico()
   return (dico);
 }
 
-int		joyeuse_fonction(char *pipe)
+int		joyeuse_fonction(char **pipe, char **ae)
 {
-  printf("found ");
-  return (1);
+  return (0);
 }
 
-int		is_it_a_builtin(char *command, char **ae)
+int		builtin_while(char **dico, char *tmp,
+			      int (*ftab[6])(char **, char **), char ***ae)
+{
+  int		i;
+  char		**tab;
+
+  i = 0;
+  while (dico[i])
+    {
+      if (my_strncmp(dico[i], tmp, my_strlen(dico[i])) == 0)
+	{
+	  if ((tab = str_wordtab(tmp, 32)) == NULL)
+	    return (1);
+	  else
+	    return (free_tab(dico), ftab[i](tab, ae));
+	}
+      i++;
+    }
+  return (2);
+}
+
+int		is_it_a_builtin(char *command, char ***ae)
 {
   char		**dico;
   char		**tab;
-  int		(*ftab[6])(char **);
+  int		(*ftab[6])(char **, char **);
   int		i;
+  char		*tmp;
+  int		ret;
 
   i = 0;
-  if ((dico = make_dico()) == NULL)
+  ret = 0;
+  if ((dico = make_dico()) == NULL ||
+      (tmp = my_strdup(command)) == NULL)
     return (1);
-  ftab[0] = joyeuse_fonction;
+  ftab[0] = cd;
   ftab[1] = joyeuse_fonction;
   ftab[2] = joyeuse_fonction;
   ftab[3] = joyeuse_fonction;
   ftab[4] = joyeuse_fonction;
   printf("%s\n", command);
-  while (dico[i])
-    {
-      if (my_strncmp(dico[i], command, my_strlen(dico[i])) == 0)
-	if ((str_wordtab(command, 32)) == NULL)
-	  return (ftab[i](tab));
-      i++;
-    }
-  return (1);
+  if ((ret = builtin_while(dico, tmp, ftab, ae)) == 1)
+    return (1);
+  else if (ret == 0)
+    return (0);
+  return (free_tab(dico), 2);
 }

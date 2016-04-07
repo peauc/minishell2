@@ -5,20 +5,22 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Thu Apr  7 11:07:17 2016 Poc
+## Last update Thu Apr  7 14:05:40 2016 Poc
 ##
 
-DEBUG=	no
+DEBUG=	yes
 
 SRC=	arlen.c			\
 	builtin.c		\
 	calc.c			\
+	cd.c			\
 	copy_env.c		\
 	count_in_wordtab.c	\
 	cut_line.c		\
 	core.c			\
 	epur.c			\
 	execute_pipes.c		\
+	environ_parsing.c	\
 	free_all.c		\
 	get_pipes.c		\
 	linked_list.c		\
@@ -26,6 +28,7 @@ SRC=	arlen.c			\
 	minishell.c		\
 	my_strcat.c		\
 	my_strcpy.c		\
+	my_strcmp.c		\
 	my_strncmp.c		\
 	my_strlen.c		\
 	my_strdup.c		\
@@ -57,7 +60,7 @@ HEAD=	-I inc/
 $(NAME):                $(OBJ)
 ifeq ($(DEBUG), yes)
 	@tput setaf 1; tput bold
-	@echo "____________________ ________________________   ____ ___._________________";
+	@echo " ____________________ ________________________   ____ ___._________________";
 	@echo "/   _____/\_   _____|/  _____/\_   _____/  _  \ |    |   \    | \__    ___/";
 	@echo "\_____  \  |    ___|/   \  ___ |    __)/  / \  \|    |   /    |   |    |";
 	@echo "/        \ |        \    \_\  \|     \/    |    \    |  /|    |___|    |";

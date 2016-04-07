@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Thu Apr  7 11:14:24 2016 Poc
+** Last update Thu Apr  7 15:17:02 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -49,15 +49,14 @@ char		**prepare_it(char *command, char **path)
   i = 0;
   if ((tmp = my_strdup(command)) == NULL ||
       (new_command = str_wordtab(tmp, ' ')) == NULL)
-    return (werror("Command not found\n"));
+    return (werror("Malloc died\n"), NULL);
   if ((another_tmp = test_access(new_command[0], path)) != NULL)
     {
-      free(new_command[0]);
       new_command[0] = another_tmp;
       return (new_command);
     }
   free_tab(new_command);
-  return (werror(pipes[i]), werror(" : Command not found\n"));
+  return (NULL);
 }
 
 int		execute_and_pipe(int **fdp, char **pipes, char **ae, int i)
@@ -80,19 +79,25 @@ int		execute_and_pipe(int **fdp, char **pipes, char **ae, int i)
   return (0);
 }
 
-int		 fork_it(int **fdp, char **pipes, int i, char **path, char **ae)
+int		 fork_it(int **fdp, char **pipes, int i,
+			 char **path, char ***ae)
 {
   char		**get_access;
+  char		*tmp;
+  int		ret;
 
-  /* if (is_it_a_builtin(path, ae)); */
-  /*   return (2); */
+  if ((tmp = my_strdup(pipes[i])) == NULL)
+    return (1);
+  if ((ret = is_it_a_builtin(tmp, ae)) == 1)
+    return (1);
+  else if (ret == 0)
+    return (free(tmp), 0);
   if (!(get_access = prepare_it(pipes[i], path)))
-    if (is_it_a_builtin(pipes[i], ae))
-      return (0);
+      return (werror(tmp), werror(" : Command not found\n"), 0);
   if (fdp[0] == NULL)
     {
       if (simple_exec(get_access, ae))
-	return (1);
+	return (free(tmp), 1);
     }
   else
     if (execute_and_pipe(fdp, get_access, ae, i))
@@ -113,11 +118,11 @@ int		calc(t_args *args, char **ae)
   i = 0;
   while (i < arlen(args->pipes.command))
     {
-      if (fork_it(fdp, args->pipes.command, i, path, ae))
+      if (fork_it(fdp, args->pipes.command, i, path, &ae))
 	return (1);
       i++;
     }
-  close_fpd(fdp);
+  close_fdp(fdp);
   free_tab(path);
   return (0);
 }

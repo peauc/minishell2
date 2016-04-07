@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Wed Apr  6 02:52:10 2016 Poc
+** Last update Thu Apr  7 14:26:23 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -47,6 +47,7 @@ int		core(t_args *, char **);
 int		minishell(char **);
 t_args		*parsing(char *);
 char		*read_it();
+void		close_fdp(int **);
 void		free_all(char **, char *);
 
 /*
@@ -59,6 +60,7 @@ char		*my_strdup(char *);
 char		*epur_str(char *);
 int		arlen(char **);
 int		my_strlen(char *);
+int		my_strcmp(char *, char *);
 int		my_strncmp(char *, char *, int);
 void		my_strcat(char *, char *);
 void		my_strcpy(char *, char *);
@@ -76,5 +78,15 @@ t_args		*add_to_back(t_args *, char *);
 t_args		*create_argument_list();
 void		showlist(t_args *);
 
+/*
+** ENVIRON PARSING
+*/
+char		*env_value(char **, char *);
+
+/*
+** BUILT-IN
+*/
+int		cd(char **, char **);
+int		is_it_a_builtin(char *, char **);
 
 #endif	/* !_MYSH_ */

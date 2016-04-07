@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 18:58:15 2016 Poc
-** Last update Thu Apr  7 10:13:44 2016 Poc
+** Last update Thu Apr  7 14:26:49 2016 Poc
 */
 
 #include <stdlib.h>
@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "mysh.h"
 
-void		close_fpd(int **fdp)
+void		close_fdp(int **fdp)
 {
   int		i;
 
