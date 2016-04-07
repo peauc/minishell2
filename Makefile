@@ -5,12 +5,13 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Thu Apr  7 10:11:06 2016 Poc
+## Last update Thu Apr  7 11:07:17 2016 Poc
 ##
 
 DEBUG=	no
 
 SRC=	arlen.c			\
+	builtin.c		\
 	calc.c			\
 	copy_env.c		\
 	count_in_wordtab.c	\
@@ -64,6 +65,8 @@ ifeq ($(DEBUG), yes)
 	@tput sgr0
 	find . -type f -iname "*.[chS]" | xargs etags -a
 endif
+	@ echo "CC = $(CC)"
+	@ echo "CFLAGS = $(CFLAGS)"
 	@ $(CC) $(OBJ) -o $(NAME)
 	@ echo -e "\033[1;31m \t \t \n \t ♩♪♫ $(NAME) Compiled\033[0;31m®\033[1;31m Created Sucesfully \033[0m"
 

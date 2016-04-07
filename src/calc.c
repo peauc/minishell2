@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Thu Apr  7 02:47:31 2016 Poc
+** Last update Thu Apr  7 11:14:24 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -49,7 +49,7 @@ char		**prepare_it(char *command, char **path)
   i = 0;
   if ((tmp = my_strdup(command)) == NULL ||
       (new_command = str_wordtab(tmp, ' ')) == NULL)
-    return (NULL);
+    return (werror("Command not found\n"));
   if ((another_tmp = test_access(new_command[0], path)) != NULL)
     {
       free(new_command[0]);
@@ -57,7 +57,7 @@ char		**prepare_it(char *command, char **path)
       return (new_command);
     }
   free_tab(new_command);
-  return (NULL);
+  return (werror(pipes[i]), werror(" : Command not found\n"));
 }
 
 int		execute_and_pipe(int **fdp, char **pipes, char **ae, int i)
@@ -84,8 +84,11 @@ int		 fork_it(int **fdp, char **pipes, int i, char **path, char **ae)
 {
   char		**get_access;
 
+  /* if (is_it_a_builtin(path, ae)); */
+  /*   return (2); */
   if (!(get_access = prepare_it(pipes[i], path)))
-    return (werror(pipes[i]), werror(" : Command not found\n"), 0);
+    if (is_it_a_builtin(pipes[i], ae))
+      return (0);
   if (fdp[0] == NULL)
     {
       if (simple_exec(get_access, ae))

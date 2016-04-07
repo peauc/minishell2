@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 18:58:15 2016 Poc
-** Last update Wed Apr  6 15:20:09 2016 Poc
+** Last update Thu Apr  7 10:13:44 2016 Poc
 */
 
 #include <stdlib.h>
@@ -22,8 +22,10 @@ void		close_fpd(int **fdp)
     {
       close(fdp[0][0]);
       close(fdp[0][1]);
+      free(fdp[i]);
       i++;
     }
+  free(fdp);
 }
 
 int             **make_pipe_tab(t_args *args)
