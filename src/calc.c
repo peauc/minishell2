@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Wed Apr  6 13:42:56 2016 Poc
+** Last update Thu Apr  7 02:47:31 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -22,7 +22,6 @@ char		*test_access(char *command, char **path)
   i = 0;
   if (access(command, X_OK) == 0)
     {
-      printf("i've found the command master \n");
       return (command);
     }
   new_path = concatenate_path(command, path);
@@ -53,6 +52,7 @@ char		**prepare_it(char *command, char **path)
     return (NULL);
   if ((another_tmp = test_access(new_command[0], path)) != NULL)
     {
+      free(new_command[0]);
       new_command[0] = another_tmp;
       return (new_command);
     }
@@ -84,7 +84,6 @@ int		 fork_it(int **fdp, char **pipes, int i, char **path, char **ae)
 {
   char		**get_access;
 
-  printf("-----NEWPIPE-----\n");
   if (!(get_access = prepare_it(pipes[i], path)))
     return (werror(pipes[i]), werror(" : Command not found\n"), 0);
   if (fdp[0] == NULL)
@@ -105,12 +104,10 @@ int		calc(t_args *args, char **ae)
   int		**fdp;
   int		i;
 
-  printf("\n\n\nhello its me\n");
   if (((path = get_path(ae)) == NULL) |
       ((fdp = make_pipe_tab(args)) == NULL))
     return (1);
   i = 0;
-  printf("-----NEW_COMMAND-----\n");
   while (i < arlen(args->pipes.command))
     {
       if (fork_it(fdp, args->pipes.command, i, path, ae))

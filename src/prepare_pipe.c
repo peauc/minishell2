@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 18:58:15 2016 Poc
-** Last update Wed Apr  6 02:42:53 2016 Poc
+** Last update Wed Apr  6 15:20:09 2016 Poc
 */
 
 #include <stdlib.h>
@@ -32,13 +32,11 @@ int             **make_pipe_tab(t_args *args)
   int           i;
 
   i = 0;
-  printf("NB OF PIPE %d\n", count_pipes(args->args));
   if ((fdp = malloc(sizeof(int *) * (count_pipes(args->args) + 1))) == NULL)
     return (NULL);
   fdp[count_pipes(args->args)] = NULL;
   while (i < count_pipes(args->args))
     {
-      printf("hello\n");
       if ((fdp[i] = malloc(sizeof(int) * 2)) == NULL)
 	return (NULL);
       pipe(fdp[i]);
