@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Sat Apr  2 20:12:25 2016 Poc
-** Last update Thu Apr  7 02:48:08 2016 Poc
+** Last update Thu Apr  7 16:04:39 2016 Poc
 */
 
 #include <stdlib.h>
@@ -49,11 +49,5 @@ char	**get_path(char **ae)
 	    return (NULL);
 	  break ;
 	}
-  /* if (path != NULL) */
-  /*   { */
-  /*     printf("-------path------\n"); */
-  /*     showtab(path); */
-  /*     printf("-------path------\n"); */
-  /*   } */
   return (path);
 }

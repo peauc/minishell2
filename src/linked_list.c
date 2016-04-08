@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 18:48:26 2016 Poc
-** Last update Thu Apr  7 02:47:41 2016 Poc
+** Last update Thu Apr  7 16:05:22 2016 Poc
 */
 
 #include <stdlib.h>
@@ -45,7 +45,7 @@ void		showlist(t_args *args)
 {
   while (args)
     {
-      printf("%s\n", args->args);
+      write(1, args->args, my_strlen(args->args));
       args = args->next;
     }
 }

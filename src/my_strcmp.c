@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Apr  7 13:57:02 2016 Poc
-** Last update Thu Apr  7 13:58:30 2016 Poc
+** Last update Thu Apr  7 21:05:14 2016 Poc
 */
 
 int	my_strcmp(char *str, char *str2)
@@ -14,6 +14,6 @@ int	my_strcmp(char *str, char *str2)
 
   i = 0;
   while (str[i] && str2[i] && str[i] == str2[i])
-      i++;
+    i++;
   return (str[i] - str2[i]);
 }

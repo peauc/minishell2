@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Sat Apr  2 20:38:43 2016 Poc
-** Last update Sat Apr  2 21:29:34 2016 Poc
+** Last update Fri Apr  8 02:28:47 2016 Poc
 */
 
 int	my_strncmp(char *str1, char *str2, int nb)

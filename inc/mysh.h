@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Thu Apr  7 14:26:23 2016 Poc
+** Last update Fri Apr  8 17:31:10 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -37,13 +37,13 @@ int		execute_first(char **, char **, int, int **);
 int		execute_middle(char **, char **, int, int **);
 int		execute_last(char **, char **, int, int **);
 int		get_pipes(t_args *);
-int		simple_exec(char **, char **);
+int		simple_exec(char **, char ***);
 
 /*
 ** MINISHELL
 */
-int		calc(t_args *, char **);
-int		core(t_args *, char **);
+int		calc(t_args *, char ***);
+int		core(t_args *, char ***);
 int		minishell(char **);
 t_args		*parsing(char *);
 char		*read_it();
@@ -82,11 +82,13 @@ void		showlist(t_args *);
 ** ENVIRON PARSING
 */
 char		*env_value(char **, char *);
+char		**create_new_entry(char **, char *, char *);
 
 /*
 ** BUILT-IN
 */
-int		cd(char **, char **);
-int		is_it_a_builtin(char *, char **);
+int		cd(char **, char ***);
+int		env(char **, char ***);
+int		is_it_a_builtin(char *, char ***);
 
 #endif	/* !_MYSH_ */

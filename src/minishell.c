@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 18:23:01 2016 Poc
-** Last update Mon Apr  4 11:46:45 2016 Poc
+** Last update Thu Apr  7 18:14:16 2016 Poc
 */
 
 #include <stdlib.h>
@@ -30,7 +30,7 @@ int		minishell(char **ae)
 	{
 	  args = parsing(read);
 	  get_pipes(args);
-	  core(args, ae);
+	  core(args, &ae);
 	  free_tab(args->pipes.command);
 	  free_args(args);
 	}

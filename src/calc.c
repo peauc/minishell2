@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Thu Apr  7 15:17:02 2016 Poc
+** Last update Fri Apr  8 17:41:07 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -55,25 +55,26 @@ char		**prepare_it(char *command, char **path)
       new_command[0] = another_tmp;
       return (new_command);
     }
+  free(another_tmp);
   free_tab(new_command);
   return (NULL);
 }
 
-int		execute_and_pipe(int **fdp, char **pipes, char **ae, int i)
+int		execute_and_pipe(int **fdp, char **pipes, char ***ae, int i)
 {
   if (i == 0)
     {
-      if (execute_first(pipes, ae, i, fdp))
+      if (execute_first(pipes, *ae, i, fdp))
 	return (1);
     }
   else if (fdp[i] == NULL)
     {
-      if (execute_last(pipes, ae, i, fdp))
+      if (execute_last(pipes, *ae, i, fdp))
 	return (1);
     }
   else
     {
-      if (execute_middle(pipes, ae, i, fdp))
+      if (execute_middle(pipes, *ae, i, fdp))
 	return (1);
     }
   return (0);
@@ -103,22 +104,23 @@ int		 fork_it(int **fdp, char **pipes, int i,
     if (execute_and_pipe(fdp, get_access, ae, i))
       return (1);
   free_tab(get_access);
+  free(tmp);
   return (0);
 }
 
-int		calc(t_args *args, char **ae)
+int		calc(t_args *args, char ***ae)
 {
   char		**path;
   int		**fdp;
   int		i;
 
-  if (((path = get_path(ae)) == NULL) |
+  if (((path = get_path(*ae)) == NULL) |
       ((fdp = make_pipe_tab(args)) == NULL))
     return (1);
   i = 0;
   while (i < arlen(args->pipes.command))
     {
-      if (fork_it(fdp, args->pipes.command, i, path, &ae))
+      if (fork_it(fdp, args->pipes.command, i, path, ae))
 	return (1);
       i++;
     }

@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Apr  7 10:23:09 2016 Poc
-** Last update Thu Apr  7 15:19:54 2016 Poc
+** Last update Fri Apr  8 17:29:43 2016 Poc
 */
 
 #include <stdlib.h>
@@ -28,13 +28,13 @@ static char	**make_dico()
   return (dico);
 }
 
-int		joyeuse_fonction(char **pipe, char **ae)
+int		joyeuse_fonction(char **pipe, char ***ae)
 {
   return (0);
 }
 
 int		builtin_while(char **dico, char *tmp,
-			      int (*ftab[6])(char **, char **), char ***ae)
+			      int (*ftab[6])(char **, char ***), char ***ae)
 {
   int		i;
   char		**tab;
@@ -57,8 +57,7 @@ int		builtin_while(char **dico, char *tmp,
 int		is_it_a_builtin(char *command, char ***ae)
 {
   char		**dico;
-  char		**tab;
-  int		(*ftab[6])(char **, char **);
+  int		(*ftab[6])(char **, char ***);
   int		i;
   char		*tmp;
   int		ret;
@@ -69,14 +68,13 @@ int		is_it_a_builtin(char *command, char ***ae)
       (tmp = my_strdup(command)) == NULL)
     return (1);
   ftab[0] = cd;
-  ftab[1] = joyeuse_fonction;
+  ftab[1] = env;
   ftab[2] = joyeuse_fonction;
   ftab[3] = joyeuse_fonction;
   ftab[4] = joyeuse_fonction;
-  printf("%s\n", command);
   if ((ret = builtin_while(dico, tmp, ftab, ae)) == 1)
     return (1);
   else if (ret == 0)
     return (0);
-  return (free_tab(dico), 2);
+  return (free(tmp), free_tab(dico), 2);
 }

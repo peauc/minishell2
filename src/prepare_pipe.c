@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 18:58:15 2016 Poc
-** Last update Thu Apr  7 14:26:49 2016 Poc
+** Last update Thu Apr  7 15:52:31 2016 Poc
 */
 
 #include <stdlib.h>
@@ -20,8 +20,6 @@ void		close_fdp(int **fdp)
   i = 0;
   while (fdp[i])
     {
-      close(fdp[0][0]);
-      close(fdp[0][1]);
       free(fdp[i]);
       i++;
     }
