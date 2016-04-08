@@ -5,9 +5,10 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Apr  7 11:07:39 2016 Poc
-** Last update Fri Apr  8 17:29:20 2016 Poc
+** Last update Fri Apr  8 23:07:13 2016 Poc
 */
 
+#include <stdlib.h>
 #include <unistd.h>
 #include "mysh.h"
 
@@ -28,7 +29,7 @@ int	update_cwd(char ***ae)
   if ((new_oldpwd = make_new_env_var("OLDPWD=", pwd)) == NULL)
     return (1);
   free(pwd);
-  if ((pwd = getcwd(NULL, 0)) == -1 ||
+  if ((pwd = getcwd(NULL, 0)) == NULL ||
       (tmp = make_new_env_var("PWD=", pwd)) == NULL ||
       (change_env_value(*ae, "OLDPWD=", new_oldpwd)) ||
       (change_env_value(*ae, "PWD=", tmp)))

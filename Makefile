@@ -5,10 +5,10 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Fri Apr  8 17:30:51 2016 Poc
+## Last update Fri Apr  8 23:58:54 2016 Poc
 ##
 
-DEBUG=	yes
+DEBUG=	no
 
 SRC=	arlen.c			\
 	builtin.c		\
@@ -30,6 +30,7 @@ SRC=	arlen.c			\
 	minishell.c		\
 	my_strcat.c		\
 	my_strcpy.c		\
+	my_strcnc.c		\
 	my_strcmp.c		\
 	my_strncmp.c		\
 	my_strlen.c		\
@@ -38,8 +39,11 @@ SRC=	arlen.c			\
 	path_managing.c		\
 	prepare_pipe.c		\
 	read.c			\
+	unsetenv.c		\
 	showtab.c		\
 	simple_exec.c		\
+	setenv.c		\
+	validate_string.c	\
 	werror.c		\
 	wordtab.c		\
 

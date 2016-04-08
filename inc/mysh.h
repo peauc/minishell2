@@ -5,11 +5,13 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Fri Apr  8 17:31:10 2016 Poc
+** Last update Fri Apr  8 23:17:38 2016 Poc
 */
 
 #ifndef _MYSH_
 # define _MYSH_
+
+# define VALID "abcdefghijklmnoparstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
 
 typedef struct	s_pipes
 {
@@ -56,12 +58,14 @@ void		free_all(char **, char *);
 char		**epur_tab(char **);
 char		**copy_env(char **);
 char		**str_wordtab(char *, char);
+char		*my_strcnc(char *, char *);
 char		*my_strdup(char *);
 char		*epur_str(char *);
 int		arlen(char **);
 int		my_strlen(char *);
 int		my_strcmp(char *, char *);
 int		my_strncmp(char *, char *, int);
+int		verify_name(char *, char *);
 void		my_strcat(char *, char *);
 void		my_strcpy(char *, char *);
 void		showtab(char **);
@@ -83,12 +87,18 @@ void		showlist(t_args *);
 */
 char		*env_value(char **, char *);
 char		**create_new_entry(char **, char *, char *);
+char		*make_new_env_var(char *, char *);
+int		change_env_value(char **, char *, char *);
+int		create_and_fill_value(char ***, char *, char *, char **);
+int		get_pos_of_value(char *, char **);
+
 
 /*
 ** BUILT-IN
 */
 int		cd(char **, char ***);
 int		env(char **, char ***);
+int		setenv(char **, char ***);
 int		is_it_a_builtin(char *, char ***);
 
 #endif	/* !_MYSH_ */

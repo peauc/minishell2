@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Apr  7 10:23:09 2016 Poc
-** Last update Fri Apr  8 17:29:43 2016 Poc
+** Last update Fri Apr  8 18:31:05 2016 Poc
 */
 
 #include <stdlib.h>
@@ -69,7 +69,7 @@ int		is_it_a_builtin(char *command, char ***ae)
     return (1);
   ftab[0] = cd;
   ftab[1] = env;
-  ftab[2] = joyeuse_fonction;
+  ftab[2] = setenv;
   ftab[3] = joyeuse_fonction;
   ftab[4] = joyeuse_fonction;
   if ((ret = builtin_while(dico, tmp, ftab, ae)) == 1)

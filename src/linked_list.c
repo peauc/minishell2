@@ -5,9 +5,10 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 18:48:26 2016 Poc
-** Last update Thu Apr  7 16:05:22 2016 Poc
+** Last update Fri Apr  8 23:08:32 2016 Poc
 */
 
+#include <unistd.h>
 #include <stdlib.h>
 #include "mysh.h"
 
