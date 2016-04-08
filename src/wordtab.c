@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 18:37:30 2016 Poc
-** Last update Thu Mar 31 14:35:29 2016 Poc
+** Last update Sat Apr  9 00:40:32 2016 Poc
 */
 
 #include <unistd.h>
@@ -77,7 +77,7 @@ char	**str_wordtab(char *str, char target)
 			       (get_lenght(str + i, target) + 1))) == NULL)
 	    return (NULL);
 	  if (my_strcpy_to_target(tab[j], str + i, target))
-	    return(NULL);
+	    return (NULL);
 	  j++;
 	}
       i++;

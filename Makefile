@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Fri Apr  8 23:58:54 2016 Poc
+## Last update Sat Apr  9 00:40:54 2016 Poc
 ##
 
 DEBUG=	no
@@ -92,5 +92,3 @@ re:	fclean all
 %.o:                    %.c
 			@ echo "[ OK ] Compiling" $<
 			@ $(CC) -o $@ -c $< $(CFLAGS)
-test:
-			gcc -o test src/execute_pipes.c test.c -I./inc

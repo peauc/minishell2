@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Fri Apr  8 23:59:59 2016 Poc
+** Last update Sat Apr  9 00:40:43 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -92,7 +92,6 @@ char		*make_new_env_var(char *, char *);
 int		change_env_value(char **, char *, char *);
 int		create_and_fill_value(char ***, char *, char *, char **);
 int		get_pos_of_value(char *, char **);
-
 
 /*
 ** BUILT-IN
