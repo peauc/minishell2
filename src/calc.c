@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Fri Apr  8 17:41:07 2016 Poc
+** Last update Sat Apr  9 00:01:24 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -44,9 +44,7 @@ char		**prepare_it(char *command, char **path)
   char		**new_command;
   char		*tmp;
   char		*another_tmp;
-  int		i;
 
-  i = 0;
   if ((tmp = my_strdup(command)) == NULL ||
       (new_command = str_wordtab(tmp, ' ')) == NULL)
     return (werror("Malloc died\n"), NULL);

@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Apr  7 12:57:17 2016 Poc
-** Last update Fri Apr  8 23:21:17 2016 Poc
+** Last update Sat Apr  9 00:39:32 2016 Poc
 */
 
 #include <stdlib.h>
@@ -35,7 +35,6 @@ char	**create_new_entry(char **ae, char *entry, char *value)
   int	i;
 
   i = 0;
-  printf("value = |%s|\n", value);
   if ((new_env = malloc(sizeof(char *) * (arlen(ae) + 2))) == NULL)
       return (NULL);
   while (i < arlen(ae) - 1)
@@ -50,7 +49,6 @@ char	**create_new_entry(char **ae, char *entry, char *value)
     return (NULL);
   my_strcpy(new_env[i], entry);
   my_strcat(new_env[i], value);
-  printf("new_env[i] %s\n", new_env[i]);
   new_env[i + 1] = NULL;
   free_tab(ae);
   return (new_env);
@@ -91,7 +89,6 @@ int	get_pos_of_value(char *field, char **ae)
   i = 0;
   while (ae[i])
     {
-      printf("%s\n", ae[i]);
       if (my_strncmp(field, ae[i], my_strlen(field)) == 0)
 	return (i);
       i++;

@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Mar 31 18:48:02 2016 Poc
-** Last update Thu Apr  7 02:47:15 2016 Poc
+** Last update Sat Apr  9 00:05:33 2016 Poc
 */
 
 #include <stdio.h>
@@ -14,11 +14,9 @@
 
 static int	add_to_struct(t_args *args)
 {
-  int		i;
   char		**tab;
   char		*str;
 
-  i = 0;
   if ((str = my_strdup(args->args)) == NULL)
     return (1);
   if ((tab = str_wordtab(args->args, '|')) == NULL)

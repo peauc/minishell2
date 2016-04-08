@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 19:05:49 2016 Poc
-** Last update Thu Apr  7 10:20:56 2016 Poc
+** Last update Sat Apr  9 00:03:15 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -22,12 +22,12 @@ int	execute_first(char **command, char **env, int i, int **fdp)
     return (1);
   if (chid == 0)
     {
-      if ((close(fdp[0][0]) == -1) ||
-	  (dup2(fdp[0][1], 1) == -1) ||
+      if ((close(fdp[i][0]) == -1) ||
+	  (dup2(fdp[i][1], 1) == -1) ||
 	  (execve(command[0], command, env)) == -1)
 	  return (1);
     }
-  if (waitpid(chid, &status, (int)NULL) == -1)
+  if (waitpid(chid, &status, 0) == -1)
     return (1);
   return (0);
 }
@@ -50,7 +50,7 @@ int	execute_middle(char **command, char **env, int i, int **fdp)
     }
   if (close(fdp[i - 1][1]) == -1 ||
       close(fdp[i - 1][0]) == -1 ||
-      waitpid(chid, &status, (int)NULL) == -1)
+      waitpid(chid, &status, 0) == -1)
     return (0);
   return (0);
 }
@@ -71,6 +71,6 @@ int	execute_last(char **command, char **env, int i, int **fdp)
     }
   close(fdp[i - 1][1]);
   close(fdp[i - 1][0]);
-  waitpid(chid, &status, (int)NULL);
+  waitpid(chid, &status, 0);
   return (0);
 }

@@ -5,16 +5,14 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Fri Apr  8 19:10:31 2016 Poc
-** Last update Fri Apr  8 19:22:33 2016 Poc
+** Last update Sat Apr  9 00:13:17 2016 Poc
 */
 
 int	is_valid_char(char name, char *dictionary)
 {
   int	i;
-  int	count;
 
   i = 0;
-  count = 0;
   while (dictionary[i])
     {
       if (dictionary[i] == name)

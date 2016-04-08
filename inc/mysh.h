@@ -5,12 +5,13 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Fri Apr  8 23:17:38 2016 Poc
+** Last update Fri Apr  8 23:59:59 2016 Poc
 */
 
 #ifndef _MYSH_
 # define _MYSH_
 
+# include <stdio.h>
 # define VALID "abcdefghijklmnoparstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
 
 typedef struct	s_pipes

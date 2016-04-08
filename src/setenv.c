@@ -5,13 +5,13 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Fri Apr  8 18:31:11 2016 Poc
-** Last update Fri Apr  8 23:45:10 2016 Poc
+** Last update Sat Apr  9 00:29:07 2016 Poc
 */
 
 #include <stdlib.h>
 #include "mysh.h"
 
-static int	change_value(char **command, char **env)
+static int	change_value(char **command, char ***env)
 {
   char		*new_chain;
   int		i;
@@ -20,9 +20,12 @@ static int	change_value(char **command, char **env)
     return (werror("Only alphanumericals characters allowed\n"), 1);
   if ((new_chain = my_strcnc(command[1], "=")) == NULL)
     return (1);
-  if (i = get_pos_of_value(command[1], env) == -1)
-    return (1);
-  printf("%d\n", i);
+  printf("%s\n", new_chain);
+  if ((i = get_pos_of_value(new_chain, *env)) == -1)
+    delete_from_env(env, new_chain);
+  printf("%s\n", command[1]);
+  *env = create_new_entry(*env, new_chain, command[2]);
+  return (0);
 }
 
 int		setenv(char **command, char ***ae)
@@ -35,8 +38,7 @@ int		setenv(char **command, char ***ae)
       return (0);
     }
   else if (command[2] == NULL)
-    {
-      printf("command[1] %s\n", command[1]);
+     {
       if (verify_name(command[1], VALID))
 	return (werror("Only alphanumericals characters allowed\n"), 1);
       (tmp = malloc(sizeof(char) * (my_strlen(command[1]) + 2)));
@@ -48,6 +50,6 @@ int		setenv(char **command, char ***ae)
       free(tmp);
     }
   else
-    change_value(command, *ae);
+    change_value(command, ae);
   return (0);
 }

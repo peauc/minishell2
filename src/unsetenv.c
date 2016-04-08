@@ -5,10 +5,11 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Fri Apr  8 23:21:21 2016 Poc
-** Last update Fri Apr  8 23:58:38 2016 Poc
+** Last update Sat Apr  9 00:38:56 2016 Poc
 */
 
 #include <stdlib.h>
+#include "mysh.h"
 
 int	delete_from_env(char ***ae, char *name)
 {
@@ -32,6 +33,7 @@ int	delete_from_env(char ***ae, char *name)
 	  i++;
       my_strcpy(new_env[j++], (*ae)[i++]);
     }
+  new_env[j] = NULL;
   free_tab(*ae);
   *ae = new_env;
   return (0);
@@ -39,5 +41,5 @@ int	delete_from_env(char ***ae, char *name)
 
 int	unsetenv(char ***ae, char **command)
 {
-
+  return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Apr  7 10:23:09 2016 Poc
-** Last update Fri Apr  8 18:31:05 2016 Poc
+** Last update Sat Apr  9 00:01:03 2016 Poc
 */
 
 #include <stdlib.h>
@@ -30,6 +30,8 @@ static char	**make_dico()
 
 int		joyeuse_fonction(char **pipe, char ***ae)
 {
+  pipe = pipe;
+  ae = ae;
   return (0);
 }
 
@@ -58,11 +60,9 @@ int		is_it_a_builtin(char *command, char ***ae)
 {
   char		**dico;
   int		(*ftab[6])(char **, char ***);
-  int		i;
   char		*tmp;
   int		ret;
 
-  i = 0;
   ret = 0;
   if ((dico = make_dico()) == NULL ||
       (tmp = my_strdup(command)) == NULL)
