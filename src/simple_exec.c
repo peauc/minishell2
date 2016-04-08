@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 19:30:28 2016 Poc
-** Last update Fri Apr  8 18:27:07 2016 Poc
+** Last update Fri Apr  8 18:29:41 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -17,7 +17,6 @@ int	simple_exec(char **pipe, char ***ae)
   int	chid;
   int	status;
 
-  printf("pipe[0] %s\n", pipe[0]);
   if ((chid = fork()) == -1)
     return (1);
   if (chid == 0)
