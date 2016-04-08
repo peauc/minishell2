@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Sat Apr  9 00:40:54 2016 Poc
+## Last update Sat Apr  9 01:47:50 2016 Poc
 ##
 
 DEBUG=	no
@@ -19,15 +19,17 @@ SRC=	arlen.c			\
 	cut_line.c		\
 	core.c			\
 	epur.c			\
-	execute_pipes.c		\
 	environ_parsing.c	\
 	env.c			\
+	execute_pipes.c		\
+	exit.c			\
 	free_all.c		\
 	get_pipes.c		\
 	linked_list.c		\
 	main.c 			\
 	make_new_env_var.c	\
 	minishell.c		\
+	my_getnbr.c		\
 	my_strcat.c		\
 	my_strcpy.c		\
 	my_strcnc.c		\

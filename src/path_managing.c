@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Sat Apr  2 20:12:25 2016 Poc
-** Last update Thu Apr  7 16:04:39 2016 Poc
+** Last update Sat Apr  9 01:14:07 2016 Poc
 */
 
 #include <stdlib.h>
@@ -44,10 +44,12 @@ char	**get_path(char **ae)
   while (ae[++i])
       if (my_strncmp(ae[i], "PATH=", 5) == 0)
 	{
+	  if (ae[i][5] == 0)
+	    return (NULL);
 	  if ((tmp = my_strdup(ae[i] + 5)) == NULL ||
 	      (path = (str_wordtab(tmp, ':'))) == NULL)
 	    return (NULL);
-	  break ;
+	  return (path);
 	}
-  return (path);
+  return (NULL);
 }

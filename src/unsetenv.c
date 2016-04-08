@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Fri Apr  8 23:21:21 2016 Poc
-** Last update Sat Apr  9 00:38:56 2016 Poc
+** Last update Sat Apr  9 01:34:52 2016 Poc
 */
 
 #include <stdlib.h>
@@ -21,7 +21,7 @@ int	delete_from_env(char ***ae, char *name)
   i = 0;
   j = 0;
   if ((pos = get_pos_of_value(name, *ae)) == -1)
-    return (0);
+      return (0);
   if ((new_env = malloc(sizeof(char *) * arlen(*ae))) == NULL)
     return (1);
   while (j < arlen(*ae) - 1)
@@ -39,7 +39,16 @@ int	delete_from_env(char ***ae, char *name)
   return (0);
 }
 
-int	unsetenv(char ***ae, char **command)
+int	unsetenv(char **command, char ***ae)
 {
+  char	*new_command;
+
+  if (command[1] == NULL)
+    return (1);
+  if ((new_command = my_strcnc(command[1], "=")) == NULL)
+    return (1);
+  if (delete_from_env(ae, new_command))
+    return (1);
+  free(new_command);
   return (0);
 }

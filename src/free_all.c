@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 19:25:47 2016 Poc
-** Last update Sat Apr  2 17:34:13 2016 Poc
+** Last update Sat Apr  9 01:29:28 2016 Poc
 */
 
 #include <stdlib.h>
@@ -29,6 +29,8 @@ void	free_tab(char **tab)
   int	i;
 
   i = 0;
+  if (!(tab))
+    return ;
   while (tab[i])
     {
       free(tab[i]);

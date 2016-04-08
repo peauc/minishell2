@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Fri Apr  8 18:31:11 2016 Poc
-** Last update Sat Apr  9 00:29:07 2016 Poc
+** Last update Sat Apr  9 01:35:45 2016 Poc
 */
 
 #include <stdlib.h>
@@ -20,10 +20,8 @@ static int	change_value(char **command, char ***env)
     return (werror("Only alphanumericals characters allowed\n"), 1);
   if ((new_chain = my_strcnc(command[1], "=")) == NULL)
     return (1);
-  printf("%s\n", new_chain);
-  if ((i = get_pos_of_value(new_chain, *env)) == -1)
-    delete_from_env(env, new_chain);
-  printf("%s\n", command[1]);
+  if ((i = get_pos_of_value(new_chain, *env)) != -1)
+      delete_from_env(env, new_chain);
   *env = create_new_entry(*env, new_chain, command[2]);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Sat Apr  9 00:01:24 2016 Poc
+** Last update Sat Apr  9 01:30:48 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -24,6 +24,8 @@ char		*test_access(char *command, char **path)
     {
       return (command);
     }
+  if (!(path))
+    return (NULL);
   new_path = concatenate_path(command, path);
   while (path[i])
     {
@@ -92,7 +94,7 @@ int		 fork_it(int **fdp, char **pipes, int i,
   else if (ret == 0)
     return (free(tmp), 0);
   if (!(get_access = prepare_it(pipes[i], path)))
-      return (werror(tmp), werror(" : Command not found\n"), 0);
+      return (werror(tmp), werror(" : Command not found\n"), 1);
   if (fdp[0] == NULL)
     {
       if (simple_exec(get_access, ae))
@@ -112,8 +114,8 @@ int		calc(t_args *args, char ***ae)
   int		**fdp;
   int		i;
 
-  if (((path = get_path(*ae)) == NULL) |
-      ((fdp = make_pipe_tab(args)) == NULL))
+  path = get_path(*ae);
+  if (((fdp = make_pipe_tab(args)) == NULL))
     return (1);
   i = 0;
   while (i < arlen(args->pipes.command))
