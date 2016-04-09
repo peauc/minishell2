@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Sat Apr  9 01:47:50 2016 Poc
+## Last update Sat Apr  9 01:53:19 2016 Poc
 ##
 
 DEBUG=	no
@@ -74,6 +74,7 @@ ifeq ($(DEBUG), yes)
 	@echo "/        \ |        \    \_\  \|     \/    |    \    |  /|    |___|    |";
 	@echo "/________//_________/\________/\_____/\____|____/______/ |________|____|";
 	@tput sgr0
+	rm -rf TAGS
 	find . -type f -iname "*.[chS]" | xargs etags -a
 endif
 	@ echo "CC = $(CC)"

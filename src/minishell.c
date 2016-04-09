@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 18:23:01 2016 Poc
-** Last update Thu Apr  7 18:14:16 2016 Poc
+** Last update Sat Apr  9 02:59:20 2016 Poc
 */
 
 #include <stdlib.h>
@@ -20,7 +20,6 @@ int		minishell(char **ae)
   args = NULL;
   while (42)
     {
-      write(1, "?> ", 3);
       if (!(read = read_it()))
 	{
 	  free_all(ae, read);
@@ -28,11 +27,13 @@ int		minishell(char **ae)
 	}
       if (read[0] != 0)
 	{
-	  args = parsing(read);
-	  get_pipes(args);
-	  core(args, &ae);
-	  free_tab(args->pipes.command);
-	  free_args(args);
+	  if ((args = parsing(read)))
+	    {
+	      get_pipes(args);
+	      core(args, &ae);
+	      free_tab(args->pipes.command);
+	      free_args(args);
+	    }
 	}
       else
 	free(read);

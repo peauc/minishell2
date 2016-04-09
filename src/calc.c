@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Sat Apr  9 01:30:48 2016 Poc
+** Last update Sat Apr  9 02:17:35 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -80,13 +80,14 @@ int		execute_and_pipe(int **fdp, char **pipes, char ***ae, int i)
   return (0);
 }
 
-int		 fork_it(int **fdp, char **pipes, int i,
-			 char **path, char ***ae)
+int		 fork_it(int **fdp, char **pipes, int i, char ***ae)
 {
   char		**get_access;
   char		*tmp;
+  char		**path;
   int		ret;
 
+  path = get_path(*ae);
   if ((tmp = my_strdup(pipes[i])) == NULL)
     return (1);
   if ((ret = is_it_a_builtin(tmp, ae)) == 1)
@@ -120,7 +121,7 @@ int		calc(t_args *args, char ***ae)
   i = 0;
   while (i < arlen(args->pipes.command))
     {
-      if (fork_it(fdp, args->pipes.command, i, path, ae))
+      if (fork_it(fdp, args->pipes.command, i, ae))
 	return (1);
       i++;
     }

@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 17:58:43 2016 Poc
-** Last update Thu Apr  7 15:18:55 2016 Poc
+** Last update Sat Apr  9 02:59:07 2016 Poc
 */
 
 #include <stdlib.h>
@@ -17,6 +17,7 @@ t_args	*parsing(char *line)
 
   if ((args = create_argument_list()) == NULL)
     return (NULL);
-  cut_by_semicolon(args, line);
+  if (cut_by_semicolon(args, line))
+    return (NULL);
   return (args);
 }

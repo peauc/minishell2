@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Sat Apr  2 16:25:58 2016 Poc
-** Last update Sat Apr  2 16:39:43 2016 Poc
+** Last update Sat Apr  9 02:40:02 2016 Poc
 */
 
 #include <stdlib.h>
@@ -33,7 +33,7 @@ char	*epur_str(char *str)
 	i++;
       new_str[k++] = str[i++];
     }
-  if (new_str[k - 1] == 32)
+  if (i != 0 && new_str[k - 1] == 32)
     new_str[k - 1] = 0;
   new_str[k] = 0;
   free(str);

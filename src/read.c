@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Thu Jan  7 16:29:47 2016
-** Last update Sat Apr  2 18:03:24 2016 Poc
+** Last update Sat Apr  9 02:58:10 2016 Poc
 */
 
 #include <unistd.h>
@@ -18,6 +18,7 @@ char		*read_it()
   int		readed;
   char		*line;
 
+  write(1, "?> ", 3);
   if ((line = malloc(4096 * sizeof(char))) == NULL)
     return (NULL);
   if (((readed = read(0, line, 4096)) <= 0))
