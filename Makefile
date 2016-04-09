@@ -5,7 +5,7 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Sat Apr  9 01:53:19 2016 Poc
+## Last update Sat Apr  9 16:42:13 2016 Poc
 ##
 
 DEBUG=	no
@@ -24,7 +24,9 @@ SRC=	arlen.c			\
 	execute_pipes.c		\
 	exit.c			\
 	free_all.c		\
+	find_redirection.c	\
 	get_pipes.c		\
+	get_next_word.c		\
 	linked_list.c		\
 	main.c 			\
 	make_new_env_var.c	\

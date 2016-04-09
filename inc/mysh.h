@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Sat Apr  9 01:50:57 2016 Poc
+** Last update Sat Apr  9 16:56:38 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -13,7 +13,7 @@
 
 # include <stdio.h>
 # define VALID "abcdefghijklmnoparstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
-
+# define PIPE "abcdefghijklmnoparstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 typedef struct	s_pipes
 {
   char		**command;

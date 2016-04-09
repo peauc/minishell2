@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Sat Apr  9 03:12:48 2016 Poc
+** Last update Sat Apr  9 14:11:52 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -96,10 +96,10 @@ int		 fork_it(int **fdp, char **pipes, int i, char ***ae)
   else if (ret == 0)
     return (free(tmp), 0);
   if (!(get_access = prepare_it(pipes[i], path)))
-    return ((tmp[0] == 0 ? werror(tmp),
-	     werror(" : Command not found\n") : werror("Incorect pipe\n")), 1);
+    return (werror(tmp), werror(" : Command not found\n"), 1);
   if (fdp[0] == NULL)
     {
+      showtab(get_access);
       if (simple_exec(get_access, ae))
 	return (free(tmp), 1);
     }

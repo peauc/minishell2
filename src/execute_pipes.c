@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 19:05:49 2016 Poc
-** Last update Sat Apr  9 00:03:15 2016 Poc
+** Last update Sat Apr  9 15:01:44 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -13,17 +13,24 @@
 #include <stdio.h>
 #include "mysh.h"
 
+#include <sys/stat.h>
+#include <fcntl.h>
+
 int	execute_first(char **command, char **env, int i, int **fdp)
 {
   int	chid;
   int	status;
 
+  printf("i = %d\n", i);
+  printf("%d\n", fdp[i][2]);
+  printf("%d\n", fdp[i][3]);
   if ((chid = fork()) == -1)
     return (1);
   if (chid == 0)
     {
       if ((close(fdp[i][0]) == -1) ||
 	  (dup2(fdp[i][1], 1) == -1) ||
+	  (dup2(fdp[i][2], 0) == -1) ||
 	  (execve(command[0], command, env)) == -1)
 	  return (1);
     }
@@ -37,6 +44,9 @@ int	execute_middle(char **command, char **env, int i, int **fdp)
   int	chid;
   int	status;
 
+  printf("i = %d\n", i);
+  printf("%d\n", fdp[i][2]);
+  printf("%d\n", fdp[i][3]);
   if ((chid = fork()) == -1)
     return (1);
   if (chid == 0)
@@ -60,12 +70,16 @@ int	execute_last(char **command, char **env, int i, int **fdp)
   int	chid;
   int	status;
 
-  if ((chid = fork()) == -1)
+  printf("i = %d\n", i);
+  printf("%d\n", fdp[i - 1][2]);
+  printf("%d\n", fdp[i - 1][3]);
+if ((chid = fork()) == -1)
     return (1);
   if (chid == 0)
     {
       if ((close (fdp[i - 1][1])) == -1 ||
 	  (dup2(fdp[i - 1][0], 0)) == -1 ||
+	  (dup2(fdp[i - 1][3], 1)) == -1 ||
 	  (execve(command[0], command, env) == -1))
 	return (1);
     }

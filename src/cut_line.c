@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Wed Mar 30 19:01:07 2016 Poc
-** Last update Sat Apr  9 03:00:34 2016 Poc
+** Last update Sat Apr  9 12:24:08 2016 Poc
 */
 
 #include <stdlib.h>
@@ -22,7 +22,7 @@ int	check_pipes(char *line)
     {
       if (line[i] == '|')
 	count++;
-      if (count > 2)
+      if (count >= 2)
 	return (1);
       if (line[i] != '|' && line[i] != ' ')
 	count = 0;
