@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Sat Apr  9 02:17:35 2016 Poc
+** Last update Sat Apr  9 03:12:48 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -48,7 +48,8 @@ char		**prepare_it(char *command, char **path)
   char		*another_tmp;
 
   if ((tmp = my_strdup(command)) == NULL ||
-      (new_command = str_wordtab(tmp, ' ')) == NULL)
+      (new_command = str_wordtab(tmp, ' ')) == NULL ||
+      new_command[0] == NULL)
     return (werror("Malloc died\n"), NULL);
   if ((another_tmp = test_access(new_command[0], path)) != NULL)
     {
@@ -95,7 +96,8 @@ int		 fork_it(int **fdp, char **pipes, int i, char ***ae)
   else if (ret == 0)
     return (free(tmp), 0);
   if (!(get_access = prepare_it(pipes[i], path)))
-      return (werror(tmp), werror(" : Command not found\n"), 1);
+    return ((tmp[0] == 0 ? werror(tmp),
+	     werror(" : Command not found\n") : werror("Incorect pipe\n")), 1);
   if (fdp[0] == NULL)
     {
       if (simple_exec(get_access, ae))
@@ -105,8 +107,7 @@ int		 fork_it(int **fdp, char **pipes, int i, char ***ae)
     if (execute_and_pipe(fdp, get_access, ae, i))
       return (1);
   free_tab(get_access);
-  free(tmp);
-  return (0);
+  return (free(tmp), 0);
 }
 
 int		calc(t_args *args, char ***ae)
