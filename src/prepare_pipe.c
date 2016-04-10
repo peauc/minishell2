@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 18:58:15 2016 Poc
-** Last update Sat Apr  9 17:04:21 2016 Poc
+** Last update Sun Apr 10 13:29:45 2016 Poc
 */
 
 #include <fcntl.h>
@@ -28,55 +28,73 @@ void		close_fdp(int **fdp)
   free(fdp);
 }
 
-int		get_first_redirection(char *first, int **fdp)
+char		*erase_redirection(char *str)
+{
+  int		i;
+  int		space;
+  char		*tmp;
+
+  space = 0;
+  i = 0;
+  if (str[0] == '<')
+    {
+      while (str[i] && space < 2)
+      {
+	if (str[i] == ' ')
+	  space++;
+	i++;
+      }
+      tmp = my_strdup(str + i);
+      return (free(str), tmp);
+    }
+  else
+    {
+      tmp = my_strdup(str);
+      while (tmp && tmp[i] != ' ')
+	i++;
+      tmp[i] = 0;
+      return (free(str), tmp);
+    }
+}
+
+int		get_first_redirection(char **first, int **fdp)
 {
   int		i;
   char		*str;
 
-  if ((i = find_left_redirection(first)))
+  if ((i = find_left_redirection(*first)) == -1)
       return (0);
-  str = get_next_word(first + i);
-  fdp[0][2] = open(str, O_RDONLY);
-  printf("str = %s\npos = %d\nfirst redirect |%s|\n", str, i, first);
+  str = get_next_word(*first + i);
+  if ((fdp[0][2] = open(str, O_RDONLY)) == -1)
+    return (werror("Cannot open :"), werror(str), 1);
+  *first = erase_redirection(*first);
   i = 0;
 }
 
-int		get_redirections(char **str, int **fdp)
+int		get_redirections(char **str, int **fdp, int i)
 {
-  char		*first;
-  char		*last;
-
-  if (count_pipes(str) == 0 ||
-      ((first = malloc(sizeof(char) * (my_strlen(str) + 1))) == NULL) ||
-      ((last = malloc(sizeof(char) * (my_strlen(str) + 1))) == NULL))
-    return (0);
-  my_strcpy_target(first, str, '|');
-  my_rev_strcpy_target(last, str, '|');
-  first = epur_str(first);
-  last = epur_str(last);
-  get_first_redirection(first, fdp);
-  printf("first = |%s|\nlast = |%s|\n", first, last);
+  if (i == 0)
+    get_first_redirection(str, fdp);
   return (0);
 }
 
-int             **make_pipe_tab(t_args *args)
+int             **make_pipe_tab(char **pipes)
 {
   int           **fdp;
   int           i;
 
   i = 0;
-  if ((fdp = malloc(sizeof(int *) * (count_pipes(args->args) + 1))) == NULL)
+  if ((fdp = malloc(sizeof(int *) * (arlen(pipes) + 1))) == NULL)
     return (NULL);
-  fdp[count_pipes(args->args)] = NULL;
-  while (i < count_pipes(args->args))
+  fdp[arlen(pipes)] = NULL;
+ while (pipes[i + 1])
     {
-      printf("args->args %s\n", args->args);
       if ((fdp[i] = malloc(sizeof(int) * 4)) == NULL)
 	return (NULL);
       pipe(fdp[i]);
-      get_redirections(&args->args, fdp);
       fdp[i][2] = 0;
       fdp[i][3] = 1;
+      get_redirections(&pipes[i] , fdp, i);
       i++;
     }
   fdp[i] = NULL;

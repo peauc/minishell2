@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 19:05:49 2016 Poc
-** Last update Sat Apr  9 15:01:44 2016 Poc
+** Last update Sun Apr 10 12:51:13 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -22,8 +22,8 @@ int	execute_first(char **command, char **env, int i, int **fdp)
   int	status;
 
   printf("i = %d\n", i);
-  printf("%d\n", fdp[i][2]);
-  printf("%d\n", fdp[i][3]);
+  printf("fdp[%d][2] %d\n", i, fdp[i][2]);
+  printf("fdp[%d][3] %d\n", i, fdp[i][3]);
   if ((chid = fork()) == -1)
     return (1);
   if (chid == 0)
@@ -73,7 +73,7 @@ int	execute_last(char **command, char **env, int i, int **fdp)
   printf("i = %d\n", i);
   printf("%d\n", fdp[i - 1][2]);
   printf("%d\n", fdp[i - 1][3]);
-if ((chid = fork()) == -1)
+  if ((chid = fork()) == -1)
     return (1);
   if (chid == 0)
     {

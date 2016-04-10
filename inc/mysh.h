@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Sat Apr  9 16:56:38 2016 Poc
+** Last update Sun Apr 10 12:22:16 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -33,7 +33,7 @@ typedef struct	s_args
 char		**concatenate_path(char *, char **);
 char		**get_path(char **);
 char		**pathing_args(char **, t_args *);
-int		**make_pipe_tab(t_args *);
+int		**make_pipe_tab(char **);
 int		cut_by_semicolon(t_args *, char *);
 int		count_pipes(char *);
 int		execute_first(char **, char **, int, int **);
