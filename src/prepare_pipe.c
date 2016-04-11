@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 18:58:15 2016 Poc
-** Last update Sun Apr 10 13:29:45 2016 Poc
+** Last update Sun Apr 10 19:42:24 2016 Poc
 */
 
 #include <fcntl.h>
@@ -69,12 +69,21 @@ int		get_first_redirection(char **first, int **fdp)
     return (werror("Cannot open :"), werror(str), 1);
   *first = erase_redirection(*first);
   i = 0;
+  return (0);
 }
 
-int		get_redirections(char **str, int **fdp, int i)
+int		get_redirections(char ***str, int **fdp, int i, int max)
 {
-  if (i == 0)
-    get_first_redirection(str, fdp);
+  if (fdp[0])
+    {
+      fdp[0][2] = 0;
+      fdp[0][3] = 1;
+      fdp[0][4] = 0;
+      fdp[0][5] = 1;
+      if ((get_first_redirection(str[0], fdp)) ||
+	  (get_last_redirection(&((*str)[arlen(*str) - 1]), fdp[0])))
+	return (1);
+    }
   return (0);
 }
 
@@ -84,19 +93,24 @@ int             **make_pipe_tab(char **pipes)
   int           i;
 
   i = 0;
-  if ((fdp = malloc(sizeof(int *) * (arlen(pipes) + 1))) == NULL)
+  if (arlen(pipes) == 0 ||
+      (fdp = malloc(sizeof(int *) * (arlen(pipes)))) == NULL)
     return (NULL);
-  fdp[arlen(pipes)] = NULL;
- while (pipes[i + 1])
+  while (i < arlen(pipes) - 1)
     {
-      if ((fdp[i] = malloc(sizeof(int) * 4)) == NULL)
+      if ((fdp[i] = malloc(sizeof(int) * 2)) == NULL)
 	return (NULL);
+      if (i == 0)
+	{
+	  free(fdp[0]);
+	  if ((fdp[0] = malloc(sizeof(int) * 6)) == NULL)
+	    return (NULL);
+	}
       pipe(fdp[i]);
-      fdp[i][2] = 0;
-      fdp[i][3] = 1;
-      get_redirections(&pipes[i] , fdp, i);
       i++;
     }
-  fdp[i] = NULL;
+  fdp[(arlen(pipes) == 0 ? 0 : arlen(pipes) - 1)] = NULL;
+  if ((get_redirections(&pipes , fdp, i, arlen(pipes) - 1)))
+      return (NULL);
   return (fdp);
 }

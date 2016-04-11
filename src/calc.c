@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Sun Apr 10 13:30:57 2016 Poc
+** Last update Sun Apr 10 19:46:25 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -50,7 +50,7 @@ char		**prepare_it(char *command, char **path)
   if ((tmp = my_strdup(command)) == NULL ||
       (new_command = str_wordtab(tmp, ' ')) == NULL ||
       new_command[0] == NULL)
-    return (werror("Malloc died\n"), NULL);
+    return (NULL);
   if ((another_tmp = test_access(new_command[0], path)) != NULL)
     {
       new_command[0] = another_tmp;
@@ -99,7 +99,6 @@ int		 fork_it(int **fdp, char **pipes, int i, char ***ae)
     return (werror(tmp), werror(" : Command not found\n"), 1);
   if (fdp[0] == NULL)
     {
-      showtab(get_access);
       if (simple_exec(get_access, ae))
 	return (free(tmp), 1);
     }
@@ -116,18 +115,17 @@ int		calc(t_args *args, char ***ae)
   int		**fdp;
   int		i;
 
-  showtab(args->pipes.command);
   path = get_path(*ae);
   if (((fdp = make_pipe_tab(args->pipes.command)) == NULL))
       return (1);
-  i = 0;
+  i= 0;
   while (i < arlen(args->pipes.command))
     {
       if (fork_it(fdp, args->pipes.command, i, ae))
 	return (1);
       i++;
     }
-  close_fdp(fdp);
+  /* close_fdp(fdp); */
   free_tab(path);
   return (0);
 }
