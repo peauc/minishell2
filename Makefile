@@ -5,10 +5,10 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Mon Apr 11 22:37:40 2016 Poc
+## Last update Tue Apr 12 01:55:27 2016 Poc
 ##
 
-DEBUG=	yes
+DEBUG=	no
 
 SRC=	arlen.c			\
 	builtin.c		\
@@ -60,7 +60,7 @@ ifeq ($(DEBUG), yes)
 	CFLAGS=		$(HEAD) -W -Wall -Wextra -ansi -pedantic -g -D DEBUG
 	CC=		clang
 else
-	CFLAGS=		$(HEAD) -W -Wall -Wextra -ansi -pedantic
+	CFLAGS=		$(HEAD) -W -Wall -Wextra -Werror -ansi -pedantic
 	CC=		gcc
 endif
 

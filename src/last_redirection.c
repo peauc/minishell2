@@ -5,9 +5,10 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Sun Apr 10 13:53:28 2016 Poc
-** Last update Mon Apr 11 22:52:28 2016 Poc
+** Last update Tue Apr 12 01:49:52 2016 Poc
 */
 
+#include <stdlib.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "mysh.h"
@@ -34,7 +35,7 @@ char	*remove_right_redit(char *str)
   else
     {
       tmp = my_strdup(str);
-      while (tmp && tmp[i] != ' ')
+      while (tmp[i] && tmp[i] != ' ' && tmp[i] != '>')
 	i++;
       tmp[i] = 0;
       return (free(str), tmp);
@@ -49,7 +50,7 @@ int	find_right_redirection(char *str, int *status)
   while (str[i])
     {
       if (str[i] == '<')
-	return (status = -1, werror("Ambiguous outpur redirect\n"), -1);
+	return ((*status = -1), werror("Ambiguous outpur redirect\n"), -1);
       if (str[i] == '>')
 	{
 	  if (str[i + 1] == '>')
@@ -69,7 +70,6 @@ int	find_right_redirection(char *str, int *status)
 int	get_last_redirection(char **last, int *fdp)
 {
   char	*word;
-  char	*tmp;
   int	status;
   int	ret;
 
@@ -84,11 +84,9 @@ int	get_last_redirection(char **last, int *fdp)
       (word = get_next_word(*last + ret)) == NULL)
     return (1);
   if (status == 1)
-    {
-      if ((fdp[5] = open(word, O_WRONLY | O_TRUNC | O_CREAT, 0644)) == -1)
-	return (1);
-    }
-  else if (status == 2)
+    if ((fdp[5] = open(word, O_WRONLY | O_TRUNC | O_CREAT, 0644)) == -1)
+      return (1);
+  if (status == 2)
     if ((fdp[5] = open(word, O_WRONLY | O_APPEND | O_CREAT, 0644)) == -1)
 	return (1);
   return (0);

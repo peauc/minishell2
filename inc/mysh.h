@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Mon Apr 11 14:21:20 2016 Poc
+** Last update Tue Apr 12 01:55:05 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -33,6 +33,8 @@ typedef struct	s_args
 char		**concatenate_path(char *, char **);
 char		**get_path(char **);
 char		**pathing_args(char **, t_args *);
+char		*remove_right_redit(char *);
+char		*test_access(char *, char **);
 int		**make_pipe_tab(char **);
 int		cut_by_semicolon(t_args *, char *);
 int		count_pipes(char *);
@@ -40,7 +42,12 @@ int		execute_first(char **, char **, int, int **);
 int		execute_middle(char **, char **, int, int **);
 int		execute_last(char **, char **, int, int **);
 int		get_pipes(t_args *);
-int		simple_exec(char **, char ***);
+int		get_first_redirection(char **, int **);
+int		get_last_redirection(char **, int *);
+int		get_redirections(char ***, int **);
+int		find_left_redirection(char *);
+int		find_right_redirection(char *, int *);
+
 
 /*
 ** MINISHELL
@@ -48,6 +55,7 @@ int		simple_exec(char **, char ***);
 int		calc(t_args *, char ***);
 int		core(t_args *, char ***);
 int		minishell(char **);
+int		simple_exec(char **, char ***);
 t_args		*parsing(char *);
 char		*read_it();
 void		close_fdp(int **);
@@ -59,6 +67,7 @@ void		free_all(char **, char *);
 char		**epur_tab(char **);
 char		**copy_env(char **);
 char		**str_wordtab(char *, char);
+char		*get_next_word(char *);
 char		*my_strcnc(char *, char *);
 char		*my_strdup(char *);
 char		*epur_str(char *);
@@ -67,6 +76,7 @@ int		my_getnbr(char *);
 int		my_strlen(char *);
 int		my_strcmp(char *, char *);
 int		my_strncmp(char *, char *, int);
+int		is_valid_char(char , char *);
 int		verify_name(char *, char *);
 void		my_strcat(char *, char *);
 void		my_strcpy(char *, char *);

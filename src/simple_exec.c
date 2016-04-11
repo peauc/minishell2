@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 19:30:28 2016 Poc
-** Last update Tue Apr 12 00:28:41 2016 Poc
+** Last update Tue Apr 12 01:54:25 2016 Poc
 */
 
 #include <stdlib.h>
@@ -17,28 +17,36 @@
 
 int	prepare_single_exec(char **pipe, int *fd)
 {
-  char	*new_str;
   char	*word;
-  char	*last;
   int	ret;
   int	status;
 
-  if ((get_first_redirection(&(pipe[0]), &fd)))
-    return (1);
-  if ((ret = find_right_redirection(pipe[0], &status)) == -1)
+  if ((get_first_redirection(&(pipe[0]), &fd)) ||
+      (ret = find_right_redirection(pipe[0], &status)) == -1)
     return (1);
   if (ret == -2)
     return (0);
   if ((pipe[0] = remove_right_redit(pipe[0])) == NULL ||
-      (word = get_next_word(pipe[0] + ret)) == NULL)
-      return (1);
-  if (status == 1)
-    if ((fd[3] = open(word, O_WRONLY | O_TRUNC | O_CREAT, 0644)) == -1)
-      return (1);
-  if (status == 2)
-    if ((fd[3] = open(word, O_WRONLY | O_APPEND | O_CREAT, 0644)) == -1)
-      return (1);
+      (word = get_next_word(pipe[0])) == NULL)
+    return (1);
+  if (status == 1 &&
+      (fd[3] = open(word, O_WRONLY | O_TRUNC | O_CREAT, 0644)) == -1)
+    return (1);
+  if (status == 2 &&
+      (fd[3] = open(word, O_WRONLY | O_APPEND | O_CREAT, 0644)) == -1)
+    return (1);
   return (0);
+}
+
+int	execute_it(int *fd, char **new_tab, char **ae)
+{
+  if ((dup2(fd[2], 0)) == -1 ||
+      dup2(fd[3], 1) == -1)
+    exit(1);
+  if (execve(new_tab[0], new_tab, ae) == -1)
+    exit(1);
+  exit(1);
+
 }
 
 int	simple_exec(char **pipe, char ***ae)
@@ -46,32 +54,23 @@ int	simple_exec(char **pipe, char ***ae)
   int	chid;
   int	status;
   int	*fd;
+  char	*tmp;
   char	**new_tab;
 
-  if ((fd = malloc(sizeof(int) * 4)) == NULL)
+  if ((fd = malloc(sizeof(int) * 4)) == NULL ||
+      (tmp = my_strdup(pipe[0])) == NULL)
     return (1);
   fd[2] = 0;
   fd[3] = 1;
-  fd[1] = 0;
-  fd[0] = 0;
   prepare_single_exec(&(pipe[0]), fd);
   new_tab = str_wordtab(pipe[0], ' ');
   new_tab[0] = test_access(new_tab[0], get_path(*ae));
   if ((chid = fork()) == -1)
     return (1);
-  if (chid == 0)
-    {
-      if ((dup2(fd[2], 0)) == -1 ||
-	  dup2(fd[3], 1) == -1)
-	return (1);
-      if (execve(new_tab[0], new_tab, *ae) == -1)
-  	{
-  	  exit(1);
-  	  return (1);
-  	}
-      return (1);
-    }
+  if ((chid == 0) && (execute_it(fd, new_tab, *ae)))
+    return (1);
   else
-    wait(&status);
+    waitpid(chid, &status, 0);
+  pipe[0] = tmp;
   return (0);
 }

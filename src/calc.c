@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Mon Apr 11 22:42:01 2016 Poc
+** Last update Tue Apr 12 01:18:36 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -20,6 +20,8 @@ char		*test_access(char *command, char **path)
   int		i;
 
   i = 0;
+  if (!command)
+    return (NULL);
   if (access(command, X_OK) == 0)
     {
       return (command);

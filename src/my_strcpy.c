@@ -5,8 +5,10 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 18:08:34 2016 Poc
-** Last update Sat Apr  9 16:06:24 2016 Poc
+** Last update Tue Apr 12 01:49:15 2016 Poc
 */
+
+#include "mysh.h"
 
 void	my_rev_strcpy_target(char *dest, char *src, char target)
 {
