@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Sun Apr 10 19:46:25 2016 Poc
+** Last update Mon Apr 11 22:42:01 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -95,13 +95,14 @@ int		 fork_it(int **fdp, char **pipes, int i, char ***ae)
     return (1);
   else if (ret == 0)
     return (free(tmp), 0);
-  if (!(get_access = prepare_it(pipes[i], path)))
-    return (werror(tmp), werror(" : Command not found\n"), 1);
   if (fdp[0] == NULL)
     {
-      if (simple_exec(get_access, ae))
+      if (simple_exec(pipes, ae))
 	return (free(tmp), 1);
+      return (0);
     }
+  if (!(get_access = prepare_it(pipes[i], path)))
+    return (werror(tmp), werror(" : Command not found\n"), 1);
   else
     if (execute_and_pipe(fdp, get_access, ae, i))
       return (1);
@@ -125,7 +126,7 @@ int		calc(t_args *args, char ***ae)
 	return (1);
       i++;
     }
-  /* close_fdp(fdp); */
+  close_fdp(fdp);
   free_tab(path);
   return (0);
 }

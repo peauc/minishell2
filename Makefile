@@ -5,10 +5,10 @@
 ## Login   <peau_c@epitech.net>
 ##
 ## Started on  Thu Jan  7 16:17:02 2016 Clement Peau
-## Last update Sun Apr 10 14:02:48 2016 Poc
+## Last update Mon Apr 11 22:37:40 2016 Poc
 ##
 
-DEBUG=	no
+DEBUG=	yes
 
 SRC=	arlen.c			\
 	builtin.c		\

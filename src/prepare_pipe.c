@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 18:58:15 2016 Poc
-** Last update Sun Apr 10 19:42:24 2016 Poc
+** Last update Mon Apr 11 22:39:59 2016 Poc
 */
 
 #include <fcntl.h>
@@ -66,9 +66,10 @@ int		get_first_redirection(char **first, int **fdp)
       return (0);
   str = get_next_word(*first + i);
   if ((fdp[0][2] = open(str, O_RDONLY)) == -1)
-    return (werror("Cannot open :"), werror(str), 1);
+    return (werror("Cannot open : "), werror(str), werror("\n"), 1);
   *first = erase_redirection(*first);
   i = 0;
+  printf("Get_first %s\n", *first);
   return (0);
 }
 
