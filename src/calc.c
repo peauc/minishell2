@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr 12 01:18:36 2016 Poc
+** Last update Tue Apr 12 01:58:20 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -100,7 +100,7 @@ int		 fork_it(int **fdp, char **pipes, int i, char ***ae)
   if (fdp[0] == NULL)
     {
       if (simple_exec(pipes, ae))
-	return (free(tmp), 1);
+	return (werror(tmp), werror(" : Command not found\n"), free(tmp), 1);
       return (0);
     }
   if (!(get_access = prepare_it(pipes[i], path)))

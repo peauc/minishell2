@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 19:30:28 2016 Poc
-** Last update Tue Apr 12 01:54:25 2016 Poc
+** Last update Tue Apr 12 01:59:13 2016 Poc
 */
 
 #include <stdlib.h>
@@ -63,8 +63,9 @@ int	simple_exec(char **pipe, char ***ae)
   fd[2] = 0;
   fd[3] = 1;
   prepare_single_exec(&(pipe[0]), fd);
-  new_tab = str_wordtab(pipe[0], ' ');
-  new_tab[0] = test_access(new_tab[0], get_path(*ae));
+  if ((new_tab = str_wordtab(pipe[0], ' ')) == NULL ||
+      ((new_tab[0] = test_access(new_tab[0], get_path(*ae)))) == NULL)
+    return (1);
   if ((chid = fork()) == -1)
     return (1);
   if ((chid == 0) && (execute_it(fd, new_tab, *ae)))
