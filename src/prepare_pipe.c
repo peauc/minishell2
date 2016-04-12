@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Apr  5 18:58:15 2016 Poc
-** Last update Tue Apr 12 01:52:38 2016 Poc
+** Last update Tue Apr 12 02:04:54 2016 Poc
 */
 
 #include <fcntl.h>
@@ -64,10 +64,12 @@ int		get_first_redirection(char **first, int **fdp)
 
   if ((i = find_left_redirection(*first)) == -1)
       return (0);
-  str = get_next_word(*first + i);
+  if ((str = get_next_word(*first + i)) == NULL)
+    return (1);
   if ((fdp[0][2] = open(str, O_RDONLY)) == -1)
     return (werror("Cannot open : "), werror(str), werror("\n"), 1);
-  *first = erase_redirection(*first);
+  if ((*first = erase_redirection(*first)) == NULL)
+    return (1);
   i = 0;
   return (0);
 }
@@ -87,7 +89,7 @@ int		get_redirections(char ***str, int **fdp)
   return (0);
 }
 
-int             **make_pipe_tab(char **pipes)
+int		**make_pipe_tab(char **pipes)
 {
   int           **fdp;
   int           i;

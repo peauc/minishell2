@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Tue Mar 29 17:45:52 2016 Poc
-** Last update Tue Apr 12 01:55:05 2016 Poc
+** Last update Tue Apr 12 02:02:45 2016 Poc
 */
 
 #ifndef _MYSH_
@@ -47,7 +47,6 @@ int		get_last_redirection(char **, int *);
 int		get_redirections(char ***, int **);
 int		find_left_redirection(char *);
 int		find_right_redirection(char *, int *);
-
 
 /*
 ** MINISHELL
@@ -104,7 +103,6 @@ int		change_env_value(char **, char *, char *);
 int		create_and_fill_value(char ***, char *, char *, char **);
 int		delete_from_env(char ***, char *);
 int		get_pos_of_value(char *, char **);
-
 
 /*
 ** BUILT-IN

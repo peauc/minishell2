@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr 12 01:58:20 2016 Poc
+** Last update Tue Apr 12 02:03:17 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -23,9 +23,7 @@ char		*test_access(char *command, char **path)
   if (!command)
     return (NULL);
   if (access(command, X_OK) == 0)
-    {
       return (command);
-    }
   if (!(path))
     return (NULL);
   new_path = concatenate_path(command, path);

@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Fri Apr  8 19:10:31 2016 Poc
-** Last update Sat Apr  9 00:13:17 2016 Poc
+** Last update Tue Apr 12 02:03:53 2016 Poc
 */
 
 int	is_valid_char(char name, char *dictionary)
@@ -22,7 +22,7 @@ int	is_valid_char(char name, char *dictionary)
   return (1);
 }
 
-int     verify_name(char *name, char *dictionary)
+int	verify_name(char *name, char *dictionary)
 {
   int   i;
 

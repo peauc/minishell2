@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Fri Apr  8 18:31:11 2016 Poc
-** Last update Sat Apr  9 01:35:45 2016 Poc
+** Last update Tue Apr 12 02:01:17 2016 Poc
 */
 
 #include <stdlib.h>
@@ -39,7 +39,8 @@ int		setenv(char **command, char ***ae)
      {
       if (verify_name(command[1], VALID))
 	return (werror("Only alphanumericals characters allowed\n"), 1);
-      (tmp = malloc(sizeof(char) * (my_strlen(command[1]) + 2)));
+      if ((tmp = malloc(sizeof(char) * (my_strlen(command[1]) + 2))) == NULL)
+	return (1);
       my_strcpy(tmp, command[1]);
       my_strcat(tmp, "=");
       if ((delete_from_env(ae, tmp)) ||
