@@ -5,7 +5,7 @@
 ** Login   <peau_c@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:45 2016 Poc
-** Last update Tue Apr 12 02:03:17 2016 Poc
+** Last update Tue Apr 12 02:18:44 2016 Poc
 */
 
 #include <sys/wait.h>
@@ -88,26 +88,26 @@ int		 fork_it(int **fdp, char **pipes, int i, char ***ae)
   char		**path;
   int		ret;
 
-  path = get_path(*ae);
-  if ((tmp = my_strdup(pipes[i])) == NULL)
+  if ((tmp = my_strdup(pipes[i])) == NULL || (path = get_path(*ae)) == NULL)
     return (1);
   if ((ret = is_it_a_builtin(tmp, ae)) == 1)
     return (1);
   else if (ret == 0)
-    return (free(tmp), 0);
+    return (free_tab(path), free(tmp), 0);
   if (fdp[0] == NULL)
     {
       if (simple_exec(pipes, ae))
-	return (werror(tmp), werror(" : Command not found\n"), free(tmp), 1);
-      return (0);
+	return (werror(tmp), werror(" : Command not found\n"),
+		free(tmp), free_tab(path), 1);
+      return (free_tab(path), 0);
     }
   if (!(get_access = prepare_it(pipes[i], path)))
-    return (werror(tmp), werror(" : Command not found\n"), 1);
+    return (free_tab(path), werror(tmp), werror(" : Command not found\n"), 1);
   else
     if (execute_and_pipe(fdp, get_access, ae, i))
-      return (1);
+      return (free_tab(path), 1);
   free_tab(get_access);
-  return (free(tmp), 0);
+  return (free_tab(path), free(tmp), 0);
 }
 
 int		calc(t_args *args, char ***ae)
